@@ -1,0 +1,58 @@
+mat-list-item .glyphicon {
+    margin-right: 10px;
+}
+
+/* Highlighting rules for nav menu items */
+mat-list-item.link-active a,
+mat-list-item.link-active a:hover,
+mat-list-item.link-active a:focus {
+    font-size: 14pt;
+    color: #259f6c;
+    padding: 5px 5px;
+}
+
+/* Keep the nav menu independent of scrolling and on top of other items */
+.main-nav {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+}    
+mat-nav-list a {
+    width: 100%;
+    padding: 5px 5px;
+    border-radius: 0px;
+}
+a {
+    /* If a menu item's text is too long, truncate it */
+    width: 100%;
+    height: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (min-width: 768px) {
+    /* On small screens, convert the nav menu to a vertical sidebar */
+    mat-list-item.link-active a,
+    mat-list-item.link-active a:hover,
+    mat-list-item.link-active a:focus {
+        font-size: 16pt;
+        color: #259f6c;
+        padding: 5px 5px;
+    }
+    mat-nav-list a {
+        width: 100%;
+        padding: 10px 10px;
+        border-radius: 0px;
+    }
+    a {
+        /* If a menu item's text is too long, truncate it */
+        width: 100%;
+        height: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}

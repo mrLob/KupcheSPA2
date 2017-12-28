@@ -1,0 +1,43 @@
+.caption{
+    width: 400px;
+    min-width: 40%;
+}
+.description{
+    width: 600px;
+    min-width: 60%;
+}
+
+.button-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+.panel-heading{
+    font-family: "Gabriela";
+    font-size: 20pt;
+    background: #fafcd6;
+}
+.card-big{
+    
+    margin-top: 5%;
+}
+.card-title{
+    font-size: 20pt;
+    color: #259f6c;
+}
+.full-width{
+    width: 100%;
+}
+.width-60p{
+    width: 60%;
+}
+mat-card{
+    margin: 5%;
+    width: 90%;
+    background-color: #fffcca;
+    border-radius: 0.3vw;
+    border: 0.5pt solid #259f6c;
+}
+mat-card:hover{
+    border: 2pt solid #259f6c;;
+}

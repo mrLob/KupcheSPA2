@@ -1,0 +1,21 @@
+<mat-card class="card-big">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td>Заголовок</td>
+                <td>Содержание</td>
+                <td>Цена</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>   
+            <tr *ngFor="let ord of orders">
+                <td>{{ord.caption}}</td>
+                <td>{{ord.text}}</td>
+                <td>{{ord.cost}}</td>
+                <td>{{ord.Geomap}}</td>
+                <button></button>
+            </tr>                   
+        </tbody>
+    </table>  
+</mat-card>

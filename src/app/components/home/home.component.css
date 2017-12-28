@@ -1,0 +1,19 @@
+.example-container {
+    width: 400px;
+    height: 200px;
+    margin: 10px;
+    border: 1px solid #555;
+    background-image: url("../../back.png");
+  }
+  mat-card{
+    
+    margin: 5%;
+    width: 90%;
+    background-color: #fffef0;
+    border-radius: 0.2vw;
+    border-width: 3px;
+    border-color: #259f6c;    
+  }
+  mat-card:hover{
+    border-color: #259f6c;
+  }
