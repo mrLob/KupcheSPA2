@@ -8,9 +8,9 @@ export class Order {
         public usersId?: number,
         public thereImages?: boolean,
         public thereFiles?: boolean
-    ){}
+    ) {}
 }
-export class User{
+export class User {
     constructor(
         public idUsers?: number,
         public lastName?: string,
@@ -22,15 +22,15 @@ export class User{
         public rulesId?: number,
         public companyId?: number,
         public pass?: string
-    ){}
+    ) {}
 }
-export class File{
+export class File {
     constructor(
         public IdFiles?: number,
         public Name?: string,
         public Url?: string,
         public UserId?: number
-    ){}
+    ) {}
 }
 export class Image{
     constructor(

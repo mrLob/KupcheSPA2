@@ -1,6 +1,6 @@
 {
   "name": "kupche-spa2",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -12,7 +12,8 @@
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "webapi": "cd webapi && dotnet run"
   },
   "private": true,
   "dependencies": {

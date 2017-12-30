@@ -1,9 +1,9 @@
 <mat-toolbar class="mat-elevation-z5" color="primary">            
-    <button class="drawer-btn" type="button" mat-button (click)="drawer.toggle()"><span class='glyphicon glyphicon-menu-hamburger'></span></button>
+    <button class="drawer-btn" type="button" mat-button (click)="drawer.toggle()"><mat-icon class="mat-18">menu</mat-icon></button>
         <span> Купец.бай</span>
         <span class="spacer"></span>
         <div *ngIf="!profLoad;else alt">
-            <button class="drawer-btn" type="button" mat-button (click)="openDialog()" [routerLink]="['/login']"><mat-icon class="mat-18">input</mat-icon></button>
+            <button class="drawer-btn" type="button" mat-button (click)="openDialog()"><mat-icon class="mat-18">input</mat-icon></button>
         </div>
         <ng-template #alt>
             {{profile.email}}
@@ -15,11 +15,11 @@
     </mat-sidenav>
     <mat-sidenav-content>       
         <router-outlet></router-outlet>
+        <app-footer></app-footer>
     </mat-sidenav-content>
-</mat-sidenav-container>
-<footer>
-    <h4>ИП Палкин А.В.</h4>
-</footer>
+</mat-sidenav-container>        
+
+
 
 
   

@@ -1,6 +1,8 @@
 mat-card{   
-    margin: 5%;
-    width: 90%;
+    margin-left: 25%;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    width: 50%;
     background-color: #fffcca;
     border-radius: 0.2vw;
     border-width: 3px;

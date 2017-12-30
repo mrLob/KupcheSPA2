@@ -16,14 +16,15 @@ import { CounterComponent } from './components/counter/counter.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { OrdersFormComponent} from './components/orders/form.orders.component';
 import { OrdersListComponent } from './components/orders/list.orders.component';
-import { LoginComponent } from './components/login/login.component'; 
-import { RegisterComponent } from './components/register/register.component'; 
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 import { AlertComponent } from './components/alert/alert.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { GoogleMapComponent } from './components/googlemap/googlemap.component';
 import { HomeAuthComponent } from './components/home-auth/home-auth.component';
 import { CompaniesComponent } from './components/companies/companies.component';
-
+import { FooterComponent } from './components/footer/footer.component';
+import { LoginDialogComponent } from './components/login-dialog/login-dialog.component';
 
 @NgModule({
     declarations: [
@@ -41,7 +42,9 @@ import { CompaniesComponent } from './components/companies/companies.component';
         ToolbarComponent,
         GoogleMapComponent,
         HomeAuthComponent,
-        CompaniesComponent
+        CompaniesComponent,
+        FooterComponent,
+        LoginDialogComponent
     ],
     imports: [
         CommonModule,

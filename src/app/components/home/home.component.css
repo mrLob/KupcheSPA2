@@ -5,6 +5,15 @@
     border: 1px solid #555;
     background-image: url("../../back.png");
   }
+  .panel{
+    margin-right: 10%;
+    margin-left: 10%;
+    margin-top: 5%;
+    width: 80%;
+  }
+  .accordion{
+    
+  }
   mat-card{
     
     margin: 5%;

@@ -6,18 +6,17 @@ import { Company } from '../shared/models';
 
 @Injectable()
 export class CompaniesService {
-    
+
     constructor(private http: HttpClient) {
     }
-    //private url = this.config.apiUrl+"/orders";
-    private url = "api/companies";
-    
-    getAll(){
+    private url = 'http://localhost:5000/api/companies';
+
+    getAll() {
         return this.http.get<Company[]>(this.url);
     }
 
-    create(newCompany: Company){
-        return this.http.post<Company>(this.url,newCompany);
+    create(newCompany: Company) {
+        return this.http.post<Company>(this.url, newCompany);
     }
 
 }

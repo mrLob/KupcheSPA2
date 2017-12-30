@@ -2,7 +2,8 @@ import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef} from '@angular/material';
 
 import { AuthenticationService } from '../../services/authentication.service';
-import { LoginComponent } from '../login/login.component';
+import { LoginDialogComponent } from '../login-dialog/login-dialog.component';
+
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
@@ -20,11 +21,7 @@ export class AppComponent implements OnInit  {
     }
 
     openDialog(): void {
-        let dialog = this.dialog.open(LoginComponent, {width: '250px'});
-        dialog.afterClosed().subscribe((result: boolean) => {
-                console.log(result);
-                this.profLoad = result;
-            });
+        this.dialog.open(LoginDialogComponent);
     }
 
 }

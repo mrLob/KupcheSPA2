@@ -1,17 +1,16 @@
 mat-card{
-  margin: 5%;
   width: 90%;
   background-color: #fffef0;
   border-radius: 0.3vw;
-  border: 0.5pt solid #259f6c;
+
 }
 mat-card:hover{
-  border: 2pt solid #259f6c;;
+  border: 0.5pt solid #259f6c;;
 }
   .card{
     width: 90%;
   }
   .content{
     width: 100%;
-    height: 95%;
+    height: 100%;
   }

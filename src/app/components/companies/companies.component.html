@@ -1,5 +1,5 @@
 
-        <mat-grid-list cols="3" rowHeight="fit" [style.height]="'500px'" [gutterSize]="'1px'">
+        <mat-grid-list cols="{{test}}" rowHeight="fit" [style.height]="'500px'" [gutterSize]="'1px'">
             <mat-grid-tile *ngFor="let company of companies" [colspan]="1" [rowspan]="1">
                 <mat-card class="content" >
                     <mat-card-header>
