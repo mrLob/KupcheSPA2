@@ -67,6 +67,9 @@ import { LoginDialogComponent } from './components/login-dialog/login-dialog.com
 
             { path: '**', redirectTo: 'home' }
         ])
+    ],
+    entryComponents: [
+        LoginDialogComponent
     ]
 })
 export class AppModuleShared {
