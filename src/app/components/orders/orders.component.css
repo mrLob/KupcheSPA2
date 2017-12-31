@@ -6,7 +6,12 @@
     width: 600px;
     min-width: 60%;
 }
-
+.panel{
+    margin-right: 10%;
+    margin-left: 10%;
+    margin-top: 5%;
+    width: 80%;
+  }
 .button-row {
     display: flex;
     align-items: center;

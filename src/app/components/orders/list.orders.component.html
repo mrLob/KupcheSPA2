@@ -1,31 +1,33 @@
-<mat-card class="card-big">
-    <mat-table #table [dataSource]="dataSource">
+<mat-table #table [dataSource]="orderSource">
 
-        <!--- Note that these columns can be defined in any order.
-            The actual rendered columns are set as a property on the row definition" -->
+    <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
 
-        <!-- Name Column -->
-        <ng-container matColumnDef="caption">
-        <mat-header-cell *matHeaderCellDef> caption </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.caption}} </mat-cell>
-        </ng-container>
+    <!-- Name Column -->
+    <ng-container matColumnDef="caption">
+    <mat-header-cell *matHeaderCellDef> caption </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.caption}} </mat-cell>
+    </ng-container>
 
-        <!-- Weight Column -->
-        <ng-container matColumnDef="cost">
+    <!-- Weight Column -->
+    <ng-container matColumnDef="cost">
+    <mat-header-cell *matHeaderCellDef> cost </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.cost}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="text">
         <mat-header-cell *matHeaderCellDef> cost </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.cost}} </mat-cell>
-        </ng-container>
+        <mat-cell *matCellDef="let element"> {{element.text}} </mat-cell>
+    </ng-container>
 
-        <ng-container matColumnDef="text">
-            <mat-header-cell *matHeaderCellDef> cost </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.text}} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="geomap">
-            <mat-header-cell *matHeaderCellDef> cost </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.geomap}} </mat-cell>
-        </ng-container>
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let orders; columns: displayedColumns;"></mat-row>
-    </mat-table>
-</mat-card>
+    <ng-container matColumnDef="geomap">
+        <mat-header-cell *matHeaderCellDef> cost </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.geomap}} </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+<mat-paginator 
+                [pageSize]="7"
+                [pageSizeOptions]="[7, 10]">
+</mat-paginator>

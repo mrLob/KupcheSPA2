@@ -1,2 +1,13 @@
-<order-form ></order-form>
-<order-list [model]="orders"></order-list>
+<div class="panel">
+    <mat-accordion displayMode="default" [multi]="false"
+                [hideToggle]="false">
+        <mat-expansion-panel [hideToggle]="false" [expanded]="true">
+            <mat-expansion-panel-header>Отправить заявку</mat-expansion-panel-header>
+        <order-form ></order-form>
+        </mat-expansion-panel>
+        <mat-expansion-panel  [hideToggle]="false" >
+            <mat-expansion-panel-header>Стол заказов</mat-expansion-panel-header>
+            <order-list [model]="orders"></order-list>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>
