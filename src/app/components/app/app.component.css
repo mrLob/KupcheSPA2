@@ -33,4 +33,7 @@
     z-index: 2;
     padding-left: 0;
   }
+  mat-toolbar-row{
+    padding: 0px 0px;
+  }
   

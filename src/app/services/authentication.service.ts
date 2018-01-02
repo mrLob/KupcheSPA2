@@ -1,18 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map'
+import { AppConfig } from '../../app.config';
+import 'rxjs/add/operator/map';
 
- 
 @Injectable()
 export class AuthenticationService {
-    private url: string = "/api/users";
+    config = new AppConfig();
+    private url: string = this.config.apiUrl + '/users';
     constructor(private http: Http) { }
     public isAuth: boolean = false;
     lcs: string | null;
 
     login(email: string, password: string) {
-        return this.http.post(this.url+'/authenticate', { email: email, pass: password })
+        return this.http.post(this.url + '/authenticate', { email: email, pass: password })
             .map((response: Response) => {
                 // login successful if there's a jwt token in the response
                 let user = response.json();
@@ -21,14 +22,14 @@ export class AuthenticationService {
                     localStorage.setItem('currentUser', JSON.stringify(user));
                     this.lcs = localStorage.getItem('currentUser');
                     this.isAuth = true;
-                    console.log("MESSAGE: "+this.lcs);
+                    console.log("MESSAGE: " + this.lcs);
                 }
             });
     }
     getStates() {
-        if(this.isAuth === true){
+        if (this.isAuth === true) {
             return "authorized";
-        }else{
+        } else {
             return "unauthorized";
         }
     }

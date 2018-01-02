@@ -22,8 +22,6 @@ export class OrdersListComponent implements OnInit {
     // tslint:disable-next-line:no-input-rename
     @Input('model')
     public orders: IOrder[];
-    @Input('filter')
-    public filter: string;
     @Input('dataSource')
     set allowDay(value: IOrder[]) {
         this.dataSource = new MatTableDataSource<IOrder>(value);
@@ -35,18 +33,25 @@ export class OrdersListComponent implements OnInit {
 // MatPaginator Inputs
     length = 100;
     pageSize = 10;
-    pageSizeOptions = [5, 10, 25, 100];
+    pageSizeOptions = [ 4, 7, 10 ];
 
     // MatPaginator Output
     pageEvent: PageEvent;
 
     constructor(private ordersService: OrdersService) {
     }
+
     ngOnInit() {
 
     }
     // tslint:disable-next-line:use-life-cycle-interface
     ngAfterViewInit() {
+    }
+
+    public applyFilter(filterValue: string) {
+        filterValue = filterValue.trim(); // Remove whitespace
+        filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+        this.dataSource.filter = filterValue;
     }
 }
 export interface IOrder {

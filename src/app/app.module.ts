@@ -59,7 +59,6 @@ import { LoginDialogComponent } from './components/login-dialog/login-dialog.com
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
             { path: 'counter', component: CounterComponent },
-            { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthGuard] },
             { path: 'orders', component: OrdersComponent },
             { path: 'login', component: LoginComponent },
             { path: 'register', component: RegisterComponent },

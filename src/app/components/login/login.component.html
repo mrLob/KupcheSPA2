@@ -8,8 +8,8 @@
         </mat-form-field>
         <mat-form-field hintLabel="Не менее 6-ти символов">
             <label for="password">Password</label>
-            <input  matInput type="password" name="password" minlength="6" maxlength="255"[(ngModel)]="model.pass" #password="ngModel" required />
-            <mat-hint align="end">{{password.value?.length || 0}}/6</mat-hint>
+            <input  matInput type="password" name="password" minlength="3" maxlength="255"[(ngModel)]="model.pass" #password="ngModel" required />
+            <mat-hint align="end">{{password.value?.length || 0}}/4</mat-hint>
             <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
         </mat-form-field>
 

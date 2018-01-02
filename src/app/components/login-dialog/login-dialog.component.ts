@@ -14,7 +14,7 @@ import { User } from '../../shared/models';
 export class LoginDialogComponent {
   public model: User = new User();
   loading = false;
-  returnUrl: string;
+//   returnUrl: string;
 
   constructor(public dialogRef: MatDialogRef<LoginDialogComponent>,
     private route: ActivatedRoute,
@@ -26,7 +26,8 @@ export class LoginDialogComponent {
     this.authenticationService.login(this.model.email || '{}', this.model.pass || '{}')
         .subscribe(
             data => {
-                this.router.navigate([this.returnUrl]);
+                this.dialogRef.close();
+                // this.router.navigate([this.returnUrl]);
             },
             error => {
                 this.alertService.error(error._body);

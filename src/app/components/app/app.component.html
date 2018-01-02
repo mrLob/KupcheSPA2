@@ -1,4 +1,5 @@
 <mat-toolbar class="mat-elevation-z5" color="primary">            
+   <mat-toolbar-row>
     <button class="drawer-btn" type="button" mat-button (click)="drawer.toggle()"><mat-icon class="mat-18">menu</mat-icon></button>
         <span> Купец.бай</span>
         <span class="spacer"></span>
@@ -8,7 +9,8 @@
         <ng-template #alt>
             {{profile.email}}
         </ng-template>
-    </mat-toolbar>
+    </mat-toolbar-row>
+</mat-toolbar>
 <mat-sidenav-container class="example-container">
     <mat-sidenav #drawer class="example-sidenav" mode="side" opened="true">    
         <nav-menu></nav-menu>
