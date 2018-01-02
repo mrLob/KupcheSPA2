@@ -26,8 +26,8 @@ export class LoginDialogComponent {
     this.authenticationService.login(this.model.email || '{}', this.model.pass || '{}')
         .subscribe(
             data => {
-                this.dialogRef.close();
-                // this.router.navigate([this.returnUrl]);
+                this.dialogRef.close('true');
+                this.router.navigate(['/myhome']);
             },
             error => {
                 this.alertService.error(error._body);

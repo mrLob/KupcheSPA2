@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms/src/model';
 
-import { OrdersFormComponent } from './form.orders.component';
-import { OrdersListComponent } from './list.orders.component';
-
 import { OrdersService } from '../../services/orders.service';
 import { Order } from '../../shared/models';
 

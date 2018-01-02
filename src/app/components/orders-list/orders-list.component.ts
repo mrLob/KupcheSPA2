@@ -10,9 +10,9 @@ import { OrdersService } from '../../services/orders.service';
 import { Order } from '../../shared/models';
 
 @Component({
-    selector: 'order-list',
-    templateUrl: './list.orders.component.html',
-    styleUrls: ['./orders.component.css'],
+    selector: 'app-order-list',
+    templateUrl: './orders-list.component.html',
+    styleUrls: ['./orders-list.component.css'],
     providers: [OrdersService]
 })
 export class OrdersListComponent implements OnInit {

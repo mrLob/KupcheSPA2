@@ -10,7 +10,7 @@ export class AuthenticationService {
     private url: string = this.config.apiUrl + '/users';
     constructor(private http: Http) { }
     public isAuth: boolean = false;
-    lcs: string | null;
+    public lcs: string | null;
 
     login(email: string, password: string) {
         return this.http.post(this.url + '/authenticate', { email: email, pass: password })
@@ -36,7 +36,7 @@ export class AuthenticationService {
     getProfile() {
         return this.lcs;
     }
- 
+
     logout() {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');

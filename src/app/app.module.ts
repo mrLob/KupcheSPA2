@@ -15,7 +15,7 @@ import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { OrdersFormComponent} from './components/orders/form.orders.component';
-import { OrdersListComponent } from './components/orders/list.orders.component';
+import { OrdersListComponent } from './components/orders-list/orders-list.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AlertComponent } from './components/alert/alert.component';

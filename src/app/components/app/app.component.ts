@@ -21,7 +21,11 @@ export class AppComponent implements OnInit  {
     }
 
     openDialog(): void {
-        this.dialog.open(LoginDialogComponent);
+        let dialog = this.dialog.open(LoginDialogComponent);
+        dialog.afterClosed().subscribe(answer => {
+            this.profLoad = answer;
+            this.profile = JSON.parse(localStorage.getItem('currentUser'));
+        });
     }
 
 }

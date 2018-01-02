@@ -1,0 +1,11 @@
+
+.button-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+.panel-heading{
+    font-family: "Gabriela";
+    font-size: 20pt;
+    background: #fafcd6;
+}
