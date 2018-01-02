@@ -1,4 +1,4 @@
-<mat-table #table [dataSource]="orderSource">
+<mat-table #table [dataSource]="dataSource">
 
     <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->
@@ -26,8 +26,9 @@
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
 </mat-table>
-<mat-paginator 
-                [pageSize]="7"
-                [pageSizeOptions]="[7, 10]">
+
+<mat-paginator #paginator
+    [pageSize]="7">
 </mat-paginator>

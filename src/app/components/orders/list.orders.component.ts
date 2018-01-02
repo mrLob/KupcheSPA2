@@ -16,11 +16,19 @@ import { Order } from '../../shared/models';
     providers: [OrdersService]
 })
 export class OrdersListComponent implements OnInit {
+
+    public displayedColumns = ['caption', 'text', 'cost', 'geomap' ];
+    public dataSource= new  MatTableDataSource<IOrder>();
     // tslint:disable-next-line:no-input-rename
     @Input('model')
     public orders: IOrder[];
     @Input('filter')
     public filter: string;
+    @Input('dataSource')
+    set allowDay(value: IOrder[]) {
+        this.dataSource = new MatTableDataSource<IOrder>(value);
+        this.dataSource.paginator = this.paginator;
+    }
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -32,17 +40,14 @@ export class OrdersListComponent implements OnInit {
     // MatPaginator Output
     pageEvent: PageEvent;
 
-    public displayedColumns = ['caption', 'text', 'cost', 'geomap' ];
-
-    constructor(private ordersService: OrdersService) {}
-    public dataSource = new MatTableDataSource<IOrder>();
-    public orderSource = new OrderDataSource(this.ordersService, this.paginator);
+    constructor(private ordersService: OrdersService) {
+    }
     ngOnInit() {
+
     }
     // tslint:disable-next-line:use-life-cycle-interface
     ngAfterViewInit() {
-        this.dataSource.paginator = this.paginator;
-      }
+    }
 }
 export interface IOrder {
     caption?: string;
@@ -51,12 +56,3 @@ export interface IOrder {
     geomap?: string;
 
 }
-export class OrderDataSource extends DataSource<any> {
-    constructor(private ordersService: OrdersService, private _paginator: MatPaginator) {
-      super();
-    }
-    connect(): Observable<IOrder[]> {
-      return this.ordersService.getOrders();
-    }
-    disconnect() {}
-  }
