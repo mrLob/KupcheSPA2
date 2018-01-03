@@ -21,6 +21,7 @@ export class LoginDialogComponent {
     private router: Router,
     private authenticationService: AuthenticationService,
     private alertService: AlertService) {}
+
   login() {
     this.loading = true;
     this.authenticationService.login(this.model.email || '{}', this.model.pass || '{}')
@@ -33,5 +34,8 @@ export class LoginDialogComponent {
                 this.alertService.error(error._body);
                 this.loading = false;
             });
+  }
+  yes(): void {
+    this.dialogRef.close('true');
   }
 }

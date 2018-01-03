@@ -25,6 +25,7 @@ import { HomeAuthComponent } from './components/home-auth/home-auth.component';
 import { CompaniesComponent } from './components/companies/companies.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoginDialogComponent } from './components/login-dialog/login-dialog.component';
+import { QuestionDialogComponent } from './components/question-dialog/question-dialog.component';
 
 @NgModule({
     declarations: [
@@ -44,7 +45,8 @@ import { LoginDialogComponent } from './components/login-dialog/login-dialog.com
         HomeAuthComponent,
         CompaniesComponent,
         FooterComponent,
-        LoginDialogComponent
+        LoginDialogComponent,
+        QuestionDialogComponent
     ],
     imports: [
         CommonModule,
@@ -68,7 +70,8 @@ import { LoginDialogComponent } from './components/login-dialog/login-dialog.com
         ])
     ],
     entryComponents: [
-        LoginDialogComponent
+        LoginDialogComponent,
+        QuestionDialogComponent
     ]
 })
 export class AppModuleShared {

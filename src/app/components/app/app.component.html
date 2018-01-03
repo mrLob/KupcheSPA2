@@ -7,7 +7,7 @@
             <button class="drawer-btn" type="button" mat-button (click)="openDialog()"><mat-icon class="mat-18">input</mat-icon></button>
         </div>
         <ng-template #alt>
-            {{profile.email}}
+            <button class="drawer-btn" type="button" mat-button (click)="logoutDialog()"><mat-icon class="mat-18">email</mat-icon>{{profile.email}}</button>
         </ng-template>
     </mat-toolbar-row>
 </mat-toolbar>

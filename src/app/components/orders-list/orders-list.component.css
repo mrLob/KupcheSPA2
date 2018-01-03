@@ -4,6 +4,9 @@
     align-items: center;
     justify-content: space-around;
   }
+.filter{
+    width: 100%
+}
 .panel-heading{
     font-family: "Gabriela";
     font-size: 20pt;

@@ -1,0 +1,11 @@
+<h1 matDialogTitle>{{title}}</h1>
+
+<mat-dialog-content>
+    {{caption}}
+</mat-dialog-content>
+
+<mat-dialog-actions [attr.align]="start">
+    <button mat-button matDialogClose (click)="isNo()">Нет</button>
+    <button mat-button (click)="isYes()">Да</button>
+    
+</mat-dialog-actions>
