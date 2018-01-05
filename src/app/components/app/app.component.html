@@ -1,12 +1,14 @@
 <mat-toolbar class="mat-elevation-z5" color="primary">            
    <mat-toolbar-row>
     <button class="drawer-btn" type="button" mat-button (click)="drawer.toggle()"><mat-icon class="mat-18">menu</mat-icon></button>
-        <span> Купец.бай</span>
+        <span> Купец.бай
+            <app-alert></app-alert>
+        </span>
         <span class="spacer"></span>
-        <div *ngIf="!profLoad;else alt">
+        <ng-template #login >
             <button class="drawer-btn" type="button" mat-button (click)="openDialog()"><mat-icon class="mat-18">input</mat-icon></button>
-        </div>
-        <ng-template #alt>
+        </ng-template>
+        <ng-template *ngIf="authGuard.canActivate(null,null);else login">
             <button class="drawer-btn" type="button" mat-button (click)="logoutDialog()"><mat-icon class="mat-18">email</mat-icon>{{profile.email}}</button>
         </ng-template>
     </mat-toolbar-row>

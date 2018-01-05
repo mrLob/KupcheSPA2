@@ -1,16 +1,18 @@
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef} from '@angular/material';
+// tslint:disable-next-line:import-blacklist
+import { Observable } from 'rxjs/Rx';
 
 import { AuthenticationService } from '../../services/authentication.service';
 import { LoginDialogComponent } from '../login-dialog/login-dialog.component';
 import { QuestionDialogComponent } from '../question-dialog/question-dialog.component';
-import { QuestionDialogService } from '../../services/question-dialog.service';
+import { AuthGuard } from '../../_guards/auth.guard';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
-    providers: [AuthenticationService, QuestionDialogService],
+    providers: [AuthenticationService, AuthGuard],
     encapsulation: ViewEncapsulation.None,
     preserveWhitespaces: false,
 })
@@ -18,30 +20,37 @@ export class AppComponent implements OnInit  {
     public profile: string | null;
     profLoad: boolean ;
     constructor(private authenticationService: AuthenticationService,
-        private questionService: QuestionDialogService,
+        public authGuard: AuthGuard,
         public dialog: MatDialog) {}
 
     ngOnInit() {
-        console.log(this.profLoad);
-        this.profLoad = false;
     }
-
+    tickTack(): void {
+        if (this.profile == null ) {
+            this.profLoad = false;
+            console.log(this.profLoad);
+        }else {
+            this.profLoad = true;
+            console.log(this.profLoad);
+        }
+    }
     openDialog(): void {
-        let dialog = this.dialog.open(LoginDialogComponent);
+        const dialog = this.dialog.open(LoginDialogComponent);
         dialog.afterClosed().subscribe(answer => {
             this.profLoad = answer;
             this.profile = JSON.parse(localStorage.getItem('currentUser'));
         });
     }
     logoutDialog(): void {
-        this.questionService.title = 'Вопрос';
-        this.questionService.caption = 'Хотите выйти?';
-        let dialog = this.dialog.open(QuestionDialogComponent);
+        const dialog = this.dialog.open(QuestionDialogComponent, {
+            data: { title: 'Предупреждение!', text: 'Хотите выйти?' }
+        });
         dialog.afterClosed().subscribe(answer => {
-            if ( answer === true ) {
-                this.profLoad = false;
-                this.authenticationService.logout();
-            }
+                this.profLoad = !answer;
+                console.log(this.profLoad);
+                if ( answer !== true) {
+                    this.authenticationService.logout();
+                }
         });
     }
 

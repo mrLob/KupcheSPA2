@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { AppModuleShared } from './app.module';
 import { AppComponent } from './components/app/app.component';
 import { AuthenticationService } from './services/authentication.service';
 import { QuestionDialogService } from './services/question-dialog.service';
 import { AuthGuard } from './_guards/auth.guard';
 import { AlertService } from './services/alert.service';
-
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import 'hammerjs';
 

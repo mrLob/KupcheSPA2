@@ -1,0 +1,10 @@
+.panel{
+    margin-right: 10%;
+    margin-left: 10%;
+    margin-top: 5%;
+    width: 80%;
+  }
+  mat-card-header{
+      font-size: 2em;
+      
+  }
