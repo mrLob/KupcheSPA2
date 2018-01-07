@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 
 import { HttpClient } from '@angular/common/http';
- 
+
 import { User } from '../shared/models';
 import { Observable } from 'rxjs/Observable';
- 
+import { AppConfig } from '../../app.config';
+
 @Injectable()
 export class UserService {
     private config = new AppConfig();
