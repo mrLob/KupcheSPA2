@@ -5,9 +5,6 @@ import { Observable } from 'rxjs/Rx';
 @Injectable()
 export class StorageService {
 
-    startListen() {
-
-    }
     public setLocalStorageItem(key: string, value: any): void {
         localStorage.setItem(key, JSON.stringify(value));
     }
@@ -18,7 +15,7 @@ export class StorageService {
             return true;
         }
     }
-    getLocalStorage() {
-
+    public getLocalStorageItem(key: string): any {
+        return JSON.parse(localStorage.getItem(key));
     }
 }

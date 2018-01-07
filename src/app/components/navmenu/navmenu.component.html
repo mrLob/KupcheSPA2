@@ -1,7 +1,9 @@
-
 <mat-nav-list dense>
-    <mat-list-item  [routerLinkActive]="['link-active']">
+    <mat-list-item *ngIf="!authGuard.canActivate(null,null)" [routerLinkActive]="['link-active']">
         <a [routerLink]="['/home']">Home</a>
+    </mat-list-item >
+    <mat-list-item *ngIf="authGuard.canActivate(null,null)" [routerLinkActive]="['link-active']">
+        <a [routerLink]="['/myhome']">Главная</a>
     </mat-list-item >
     <mat-list-item  [routerLinkActive]="['link-active']">
         <a [routerLink]="['/counter']">Counter</a>

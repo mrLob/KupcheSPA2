@@ -26,6 +26,7 @@ import { CompaniesComponent } from './components/companies/companies.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoginDialogComponent } from './components/login-dialog/login-dialog.component';
 import { QuestionDialogComponent } from './components/question-dialog/question-dialog.component';
+import { ProfileBarComponent } from './components/profile-bar/profile-bar.component';
 
 @NgModule({
     declarations: [
@@ -46,7 +47,8 @@ import { QuestionDialogComponent } from './components/question-dialog/question-d
         CompaniesComponent,
         FooterComponent,
         LoginDialogComponent,
-        QuestionDialogComponent
+        QuestionDialogComponent,
+        ProfileBarComponent
     ],
     imports: [
         CommonModule,

@@ -22,15 +22,7 @@ export class OrdersListComponent implements OnInit {
     // tslint:disable-next-line:no-input-rename
     @Input('model')
     public orders: IOrder[];
-    @Input('filter')
-    set applyFilter(filterValue: string) {
-        if (filterValue === '') {
-            return;
-        }
-        filterValue = filterValue.trim(); // Remove whitespace
-        filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
-        this.dataSource.filter = filterValue;
-    }
+
     @Input('dataSource')
     set allowDay(value: IOrder[]) {
         this.dataSource = new MatTableDataSource<IOrder>(value);
@@ -55,6 +47,15 @@ export class OrdersListComponent implements OnInit {
     }
     // tslint:disable-next-line:use-life-cycle-interface
     ngAfterViewInit() {
+    }
+
+    public applyFilter(filterValue: string) {
+        if (filterValue === '') {
+            return;
+        }
+        filterValue = filterValue.trim(); // Remove whitespace
+        filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+        this.dataSource.filter = filterValue;
     }
 }
 export interface IOrder {

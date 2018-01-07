@@ -5,16 +5,16 @@
             <app-alert></app-alert>
         </span>
         <span class="spacer"></span>
-        <ng-template #login >
-            <button class="drawer-btn" type="button" mat-button (click)="openDialog()"><mat-icon class="mat-18">input</mat-icon></button>
-        </ng-template>
-        <ng-template *ngIf="authGuard.canActivate(null,null);else login">
+        <div *ngIf="authGuard.canActivate(null,null)">
             <button class="drawer-btn" type="button" mat-button (click)="logoutDialog()"><mat-icon class="mat-18">email</mat-icon>{{profile.email}}</button>
-        </ng-template>
+        </div>
+        <div *ngIf="!authGuard.canActivate(null,null)">
+            <button class="drawer-btn" type="button" mat-button (click)="openDialog()"><mat-icon class="mat-18">input</mat-icon></button>
+        </div>        
     </mat-toolbar-row>
 </mat-toolbar>
 <mat-sidenav-container class="example-container">
-    <mat-sidenav #drawer class="example-sidenav" mode="side" opened="true">    
+    <mat-sidenav #drawer class="example-sidenav" mode="side" opened="true">
         <nav-menu></nav-menu>
     </mat-sidenav>
     <mat-sidenav-content>       
