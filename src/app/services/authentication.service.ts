@@ -6,8 +6,9 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AuthenticationService {
-    config = new AppConfig();
-    private url: string = this.config.apiUrl + '/users';
+    private config = new AppConfig();
+    private url = this.config.apiUrl + '/users';
+
     constructor(private http: Http) { }
 
     login(email: string, password: string) {

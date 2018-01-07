@@ -8,32 +8,33 @@ import { Observable } from 'rxjs/Observable';
  
 @Injectable()
 export class UserService {
-    constructor(private http: Http,private httpClient: HttpClient) { }
+    private config = new AppConfig();
+    private url = this.config.apiUrl + '/users';
 
-    private url = "api/users";
- 
+    constructor(private http: Http, private httpClient: HttpClient) { }
+
     getAll() {
         return this.http.get(this.url, this.jwt()).map((response: Response) => response.json());
     }
- 
+
     getById(_id: string) {
         return this.http.get(this.url + _id, this.jwt()).map((response: Response) => response.json());
     }
- 
+
     create(user: User) {
-        return this.http.post(this.url,user,this.jwt());
+        return this.http.post(this.url, user, this.jwt());
     }
- 
+
     update(user: User) {
         return this.http.put(this.url  + user.idUsers, user, this.jwt());
     }
- 
+
     delete(_id: string) {
         return this.http.delete(this.url  + _id, this.jwt());
     }
- 
+
     // private helper methods
- 
+
     private jwt() {
         // create authorization header with jwt token
         let currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');

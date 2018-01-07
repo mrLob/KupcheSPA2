@@ -3,13 +3,15 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
 import { Company } from '../shared/models';
+import { AppConfig } from '../../app.config';
 
 @Injectable()
 export class CompaniesService {
+    private config = new AppConfig();
+    private url = this.config.apiUrl + '/companies';
 
     constructor(private http: HttpClient) {
     }
-    private url = 'http://localhost:5000/api/companies';
 
     getAll() {
         return this.http.get<Company[]>(this.url);
