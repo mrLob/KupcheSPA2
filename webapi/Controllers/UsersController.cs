@@ -65,9 +65,8 @@ namespace webapi.Controllers
                 Telephone = authUser.Telephone,
                 isDeleted = authUser.IsDeleted,
                 isBlocked = authUser.IsBlocked,
-                Rule = authUser.Rules.Name,
-                // Company = authUser.Company.ShortName,
-                // CompanyPan = authUser.Company.Pan,
+                Rule = authUser.RulesId,
+                Company = authUser.CompanyId,
                 Token = tokenString
             });
         }
