@@ -12,8 +12,7 @@ using webapi.DTO;
 using webapi.Models;
 using webapi.Helpers;
 using webapi.Services;
-
-
+using System.Linq;
 
 namespace webapi.Controllers
 {
@@ -55,6 +54,9 @@ namespace webapi.Controllers
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
             var tokenString = tokenHandler.WriteToken(token);
+            servicedbContext context = new servicedbContext();
+            var rules = context.Rules.Where(r => r.IdRules == authUser.RulesId);
+            var company = context.Companies.Where(c => c.IdCompany == authUser.CompanyId);
             Console.WriteLine("Return auth of "+ authUser.Email);
             return Ok(new {
                 IdUser = authUser.IdUsers,
@@ -65,8 +67,8 @@ namespace webapi.Controllers
                 Telephone = authUser.Telephone,
                 isDeleted = authUser.IsDeleted,
                 isBlocked = authUser.IsBlocked,
-                Rule = authUser.RulesId,
-                Company = authUser.CompanyId,
+                Rule = rules,
+                Company = company,
                 Token = tokenString
             });
         }
