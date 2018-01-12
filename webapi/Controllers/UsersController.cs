@@ -55,6 +55,7 @@ namespace webapi.Controllers
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
             var tokenString = tokenHandler.WriteToken(token);
+            Console.WriteLine("Return auth of "+ authUser.Email);
             return Ok(new {
                 IdUser = authUser.IdUsers,
                 Email = authUser.Email,

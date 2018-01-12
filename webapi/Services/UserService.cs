@@ -34,8 +34,7 @@ namespace webapi.Services
                 if(authUser == null) 
                     return null;
                 if(!VerifyPasswordHash(pass,authUser.PassHash,authUser.PassSalt))
-                    return null;
-                Console.WriteLine("Return auth of "+ authUser.Email);
+                    return null;                
                 return authUser;
             }
         }
