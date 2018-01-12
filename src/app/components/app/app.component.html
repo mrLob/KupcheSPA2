@@ -6,7 +6,7 @@
         </span>
         <span class="spacer"></span>
         <div class="drawer-btn" *ngIf="authGuard.canActivate(null,null)">
-            <button class="drawer-btn" type="button" mat-button (click)="logoutDialog()"><mat-icon class="mat-18">email</mat-icon>{{profile.email}}</button>
+            <app-profile-bar [profile]="getProfile()"></app-profile-bar>
         </div>
         <div class="drawer-btn" *ngIf="!authGuard.canActivate(null,null)">
             <button class="drawer-btn" type="button" mat-button (click)="openDialog()"><mat-icon class="mat-18">input</mat-icon></button>
