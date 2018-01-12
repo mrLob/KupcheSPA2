@@ -66,8 +66,8 @@ namespace webapi.Controllers
                 isDeleted = authUser.IsDeleted,
                 isBlocked = authUser.IsBlocked,
                 Rule = authUser.Rules.Name,
-                Company = authUser.Company.ShortName,
-                CompanyPan = authUser.Company.Pan,
+                // Company = authUser.Company.ShortName,
+                // CompanyPan = authUser.Company.Pan,
                 Token = tokenString
             });
         }
