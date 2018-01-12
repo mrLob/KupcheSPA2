@@ -23,7 +23,7 @@
     box-shadow: inset -6px 0px 6px rgba(0,0,0,.1);
   }
   .drawer-btn{
-    position: absolute;
+    position: relative;
     display: block;
     height: 100%;
     padding: 0;

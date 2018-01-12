@@ -16,6 +16,9 @@ export class OrdersService {
     getOrders() {
         return this.http.get<Order[]>(this.url);
     }
+    getFiltered(filter: Order) {
+        return this.http.get<Order[]>(this.url + '/');
+    }
 
     createOrders(neworder: Order) {
         return this.http.post<Order>(this.url, neworder);

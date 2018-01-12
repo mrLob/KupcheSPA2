@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, Output, ViewChild, EventEmitter } from '@angular/core';
 import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator, MatTableDataSource, PageEvent} from '@angular/material';
 
@@ -17,7 +17,7 @@ import { Order } from '../../shared/models';
 })
 export class OrdersListComponent implements OnInit {
 
-    public displayedColumns = ['caption', 'text', 'cost', 'geomap' ];
+    public displayedColumns = ['caption', 'text', 'cost', 'action' ];
     public dataSource= new  MatTableDataSource<IOrder>();
     // tslint:disable-next-line:no-input-rename
     @Input('model')
@@ -29,6 +29,8 @@ export class OrdersListComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
     }
 
+    @Output() change: EventEmitter<any> = new EventEmitter();
+
     @ViewChild(MatPaginator) paginator: MatPaginator;
 
 // MatPaginator Inputs
@@ -39,8 +41,7 @@ export class OrdersListComponent implements OnInit {
     // MatPaginator Output
     pageEvent: PageEvent;
 
-    constructor(private ordersService: OrdersService) {
-    }
+    constructor(private ordersService: OrdersService) {}
 
     ngOnInit() {
 
@@ -50,15 +51,21 @@ export class OrdersListComponent implements OnInit {
     }
 
     public applyFilter(filterValue: string) {
+        filterValue = filterValue.trim();
         if (filterValue === '') {
             return;
         }
-        filterValue = filterValue.trim(); // Remove whitespace
         filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
         this.dataSource.filter = filterValue;
     }
+    public onClick(id: any) {
+        this.change.emit(id);
+        console.log('changed ' + id);
+    }
 }
+
 export interface IOrder {
+    idOrder?: number;
     caption?: string;
     text?: string;
     cost?: number;

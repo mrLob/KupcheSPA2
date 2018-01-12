@@ -5,32 +5,30 @@ import { OrdersService } from "../../services/orders.service";
 import { Order } from "../../shared/models";
 
 @Component({
-    selector: 'order-form',
-    templateUrl: './form.orders.component.html',
-    styleUrls: ['./orders.component.css'],
+    selector: 'app-order-form',
+    templateUrl: './orders-form.component.html',
+    styleUrls: ['./orders-form.component.css'],
     providers: [OrdersService]
 })
 export class OrdersFormComponent implements OnInit {
     public order: Order= new Order();
     public orders: Order[];
-    @Output("newOrder")
-    newOrderEvent = new EventEmitter<Order>() 
-    
-    constructor(private ordersService: OrdersService){}
+    // tslint:disable-next-line:no-output-rename
+    @Output('newOrder') change = new EventEmitter<Order>();
+    constructor(private ordersService: OrdersService) {}
 
-    ngOnInit(){
+    ngOnInit() {
         this.loadOrders();
     }
 
-    loadOrders(){
+    loadOrders() {
         this.ordersService.getOrders()
         .subscribe((data: Order[]) => this.orders = data);
-        
     }
 
-    onSubmit(){
-        this.newOrderEvent.emit(this.order);
+    onSubmit() {
+        this.change.emit(this.order);
         this.ordersService.createOrders(this.order);
-        this.order = new Order();    
-    } 
+        this.order = new Order();
+    }
 }

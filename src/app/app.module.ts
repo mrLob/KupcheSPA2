@@ -14,8 +14,9 @@ import { HomeComponent } from './components/home/home.component';
 import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { OrdersComponent } from './components/orders/orders.component';
-import { OrdersFormComponent} from './components/orders/form.orders.component';
+import { OrdersFormComponent} from './components/orders-form/orders-form.component';
 import { OrdersListComponent } from './components/orders-list/orders-list.component';
+import { OrderViewComponent } from './components/order-view/order-view.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AlertComponent } from './components/alert/alert.component';
@@ -38,6 +39,7 @@ import { ProfileBarComponent } from './components/profile-bar/profile-bar.compon
         OrdersComponent,
         OrdersFormComponent,
         OrdersListComponent,
+        OrderViewComponent,
         LoginComponent,
         RegisterComponent,
         AlertComponent,

@@ -23,9 +23,11 @@
         <mat-cell *matCellDef="let element"> {{element.text}} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="geomap">
-        <mat-header-cell *matHeaderCellDef> Локация </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.geomap}} </mat-cell>
+    <ng-container matColumnDef="action">
+        <mat-header-cell *matHeaderCellDef> Действие </mat-header-cell>
+        <mat-cell *matCellDef="let element"> 
+            <button mat-button (click)="onClick(element)">Взглянуть</button>
+        </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>

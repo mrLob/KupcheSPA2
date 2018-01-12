@@ -21,11 +21,23 @@ namespace  webapi.Controllers
         {
              using(servicedbContext db = new servicedbContext())
             {
-                IEnumerable<Companies> companies =  db.Companies.ToList();
+                IEnumerable<Companies> companies =  db.Companies.Where(c => c.IsDeleted == 0 ).ToList();
                 Console.WriteLine("Get response Companies!");
                 return companies;
             }
         }
+        [AllowAnonymous]
+        [HttpGet("{filter}")]
+        public IEnumerable<Companies> GetFiltered(string filter)
+        {
+             using(servicedbContext db = new servicedbContext())
+            {
+                IEnumerable<Companies> companies =  db.Companies.Where(c => c.IsDeleted == 0 ).ToList();
+                Console.WriteLine("Get response Companies!");
+                return companies;
+            }
+        }
+
 
         [HttpPost]
         public IActionResult Create()

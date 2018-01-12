@@ -1,13 +1,13 @@
 <div class="panel">
     <mat-accordion displayMode="default" [multi]="false"
-                [hideToggle]="false">
-        <mat-expansion-panel [hideToggle]="false" [expanded]="true">
-            <mat-expansion-panel-header>Отправить заявку</mat-expansion-panel-header>
-        <order-form ></order-form>
-        </mat-expansion-panel>
-        <mat-expansion-panel  [hideToggle]="false" >
+                [hideToggle]="false">        
+        <mat-expansion-panel  [hideToggle]="false" [expanded]="!changed">
             <mat-expansion-panel-header>Стол заказов</mat-expansion-panel-header>
-            <app-order-list [model]="orders" [dataSource]="orders" ></app-order-list>
+            <app-order-list [model]="orders" [dataSource]="orders" (change)="change($event)" ></app-order-list>
+        </mat-expansion-panel>
+        <mat-expansion-panel [hideToggle]="false" [disabled]="!changed"(closed)="onChanged()" [expanded]="changed">
+                <mat-expansion-panel-header>Просмотр</mat-expansion-panel-header>
+            <app-order-view [order]="order" ></app-order-view>
         </mat-expansion-panel>
     </mat-accordion>
 </div>

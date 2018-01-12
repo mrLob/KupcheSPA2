@@ -38,7 +38,7 @@ a {
         color: #259f6c;        
         padding: 0px 0px;
         margin: 15px 15px;
-        text-shadow: #1e6b7f 0.001em 0.001em 2px;
+        text-shadow: #1e6b7f 0.001em 0.001em 0px;
     }
     mat-nav-list a {
         width: 100%;

@@ -16,7 +16,17 @@ namespace  webapi.Controllers
         {
             using(servicedbContext db = new servicedbContext())
             {
-                IEnumerable<Orders> tender =  db.Orders.ToList();
+                IEnumerable<Orders> tender =  db.Orders.Where(o => o.IsDeleted == 0).ToList();
+                Console.WriteLine("Get response orders!");
+                return tender;
+            }
+        }
+        [HttpGet("{filter}")]
+        public IEnumerable<Orders> GetFiltered(string filter)
+        {
+            using(servicedbContext db = new servicedbContext())
+            {
+                IEnumerable<Orders> tender =  db.Orders.Where(o => o.Users.Company.Pan == filter).ToList();
                 Console.WriteLine("Get response orders!");
                 return tender;
             }

@@ -1,14 +1,14 @@
 <mat-toolbar class="mat-elevation-z5" color="primary">            
-   <mat-toolbar-row>
+   <mat-toolbar-row [ngStyle]="{'padding-left':'0','padding-right':'0'}">
     <button class="drawer-btn" type="button" mat-button (click)="drawer.toggle()"><mat-icon class="mat-18">menu</mat-icon></button>
         <span> Купец.бай
             <app-alert></app-alert>
         </span>
         <span class="spacer"></span>
-        <div *ngIf="authGuard.canActivate(null,null)">
+        <div class="drawer-btn" *ngIf="authGuard.canActivate(null,null)">
             <button class="drawer-btn" type="button" mat-button (click)="logoutDialog()"><mat-icon class="mat-18">email</mat-icon>{{profile.email}}</button>
         </div>
-        <div *ngIf="!authGuard.canActivate(null,null)">
+        <div class="drawer-btn" *ngIf="!authGuard.canActivate(null,null)">
             <button class="drawer-btn" type="button" mat-button (click)="openDialog()"><mat-icon class="mat-18">input</mat-icon></button>
         </div>        
     </mat-toolbar-row>
@@ -17,9 +17,8 @@
     <mat-sidenav #drawer class="example-sidenav" mode="side" opened="true">
         <nav-menu></nav-menu>
     </mat-sidenav>
-    <mat-sidenav-content>       
+    <mat-sidenav-content>
         <router-outlet></router-outlet>
-        <app-footer></app-footer>
     </mat-sidenav-content>
 </mat-sidenav-container>        
 
