@@ -1,40 +1,29 @@
-<mat-grid-list cols="3" [rowHeight]="'100px'" [gutterSize]="'1px'">
-    <mat-grid-tile [colspan]="1" [rowspan]="1">
-    <div class="header">
+<div fxLayout="row wrap">
+    <div fxFlex="60%">
         <div class="title">{{order.caption}}</div>
         <div class="subtitle">Subtitle</div>
     </div>
-    </mat-grid-tile>
-    <mat-grid-tile [colspan]="1" [rowspan]="1">
-        <div class="content">
-            <div class="date">Актуален до:</div>
-        </div>
-    </mat-grid-tile>
-    <mat-grid-tile [colspan]="1" [rowspan]="1">
-    </mat-grid-tile>
-    <mat-grid-tile [colspan]="2" [rowspan]="2">
-        <div class="content">
-            <div class="text">{{order.text}}</div>            
-        </div>
-    </mat-grid-tile>
-    <mat-grid-tile [colspan]="1" [rowspan]="2">
-            <div class="content">
-                <div class="map">Карта</div>
-            </div>
-        </mat-grid-tile>
-    <mat-grid-tile [colspan]="2" [rowspan]="1">
-        <div class="footer">
-            <p>Метки</p>
-            <mat-chip-list>
-                <mat-chip (select)="onSelect1">Footer</mat-chip>
-                <mat-chip (select)="onSelect2">Chip 2</mat-chip>
-            </mat-chip-list>
-        </div>
-    </mat-grid-tile>
-    <mat-grid-tile [colspan]="1" [rowspan]="1">
-        <div class="footer">
-            <p>{{order.cost}}</p>
-            <button mat-button (click)="onAction">Далее</button> 
-        </div>
-    </mat-grid-tile>
-</mat-grid-list>
+    <div fxFlex="20%">
+        <div>Актуален до:</div>
+    </div>
+    <div fxFlex="20%">
+        <div >Категория</div>
+    </div>
+    <div fxFlex="60%" class="content">
+        <div>{{order.text}}</div>            
+    </div>
+    <div fxFlex="40%" class="content">
+        <div>Карта</div>
+    </div>
+    <div fxFlex="50%">
+        <p>Метки</p>
+        <mat-chip-list>
+            <mat-chip >Footer</mat-chip>
+            <mat-chip >Chip 2</mat-chip>
+        </mat-chip-list>
+    </div>
+    <div fxFlex="50%" fxLayoutAlign="end">
+        <p>{{order.cost}}</p>
+        <button mat-button >Далее</button> 
+    </div>
+</div>

@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AgmCoreModule } from '@agm/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MaterialModule } from './material.module';
 import { AuthGuard } from './_guards/auth.guard';
@@ -28,6 +29,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { LoginDialogComponent } from './components/login-dialog/login-dialog.component';
 import { QuestionDialogComponent } from './components/question-dialog/question-dialog.component';
 import { ProfileBarComponent } from './components/profile-bar/profile-bar.component';
+import { CompanyViewComponent } from './components/company-view/company-view.component';
 
 @NgModule({
     declarations: [
@@ -50,13 +52,16 @@ import { ProfileBarComponent } from './components/profile-bar/profile-bar.compon
         FooterComponent,
         LoginDialogComponent,
         QuestionDialogComponent,
-        ProfileBarComponent
+        ProfileBarComponent,
+        CompanyViewComponent
     ],
     imports: [
+        FlexLayoutModule,
         CommonModule,
         HttpClientModule,
         HttpModule,
         FormsModule,
+        ReactiveFormsModule,
         MaterialModule,
         AgmCoreModule.forRoot({
             apiKey: 'AIzaSyBh7lDB034yICiJdrTsOUruVLvnmbvI8ug'
@@ -74,6 +79,7 @@ import { ProfileBarComponent } from './components/profile-bar/profile-bar.compon
         ])
     ],
     entryComponents: [
+        OrdersFormComponent,
         LoginDialogComponent,
         QuestionDialogComponent
     ]

@@ -17,7 +17,7 @@ import { Order } from '../../shared/models';
 })
 export class OrdersListComponent implements OnInit {
 
-    public displayedColumns = ['caption', 'text', 'cost', 'action' ];
+    public displayedColumns = ['caption', 'text', 'cost' ];
     public dataSource= new  MatTableDataSource<IOrder>();
     // tslint:disable-next-line:no-input-rename
     @Input('model')

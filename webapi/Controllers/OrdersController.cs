@@ -31,11 +31,10 @@ namespace  webapi.Controllers
                 return tender;
             }
         }
-
         [HttpPost]
         public IActionResult PostOrders([FromBody]Orders order)
         {
-            
+            Console.WriteLine("Post order:");
             if(ModelState.IsValid)
             {
                 Orders neworder = new Orders();
@@ -47,19 +46,11 @@ namespace  webapi.Controllers
                 
                 using(servicedbContext db = new servicedbContext())
                 {
-                    if( db.Orders.LastOrDefault( o => o.IdOrders > 0 ) != null )
-                    {
-                        neworder.IdOrders = db.Orders.LastOrDefault().IdOrders +1;                    
-                    }
-                    else
-                    {
-                        neworder.IdOrders = 1;
-                    }
-
-                    Console.WriteLine("Post order: "+ neworder.Caption.ToString());
+                    Console.WriteLine("Post order: " + neworder.Caption.ToString());
                     db.Orders.Add(neworder);
                     db.SaveChanges();
-                    Console.WriteLine("Post response order: "+ neworder.Caption.ToString());
+                    Console.WriteLine("Post response order: " + neworder.IdOrders.ToString());
+                    Console.WriteLine("Post response order: " + neworder.Caption.ToString());
                     return Ok(neworder);
                 }
             }

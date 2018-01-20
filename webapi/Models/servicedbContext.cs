@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using MySQL.Data.EntityFrameworkCore.Extensions;
 
-namespace webapi.Models
+namespace webapi.Models 
 {
     public partial class servicedbContext : DbContext
     {
@@ -38,7 +38,7 @@ namespace webapi.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+               //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 string dbServer = "86.57.161.56"; 
                 string dbUser = "KupecApp";
                 string dbPass = "Forma7369milk";
@@ -717,6 +717,13 @@ namespace webapi.Models
                     .HasColumnType("tinyint(4)")
                     .HasDefaultValueSql("'0'");
 
+                entity.Property(e => e.UpTo).HasColumnType("datetime");
+
+                entity.Property(e => e.Url)
+                    .IsRequired()
+                    .HasColumnName("URL")
+                    .HasMaxLength(100);
+
                 entity.Property(e => e.UsersId).HasColumnType("int(11)");
 
                 entity.Property(e => e.Viewers)
@@ -726,7 +733,6 @@ namespace webapi.Models
                 entity.HasOne(d => d.Users)
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.UsersId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_Orders_1");
             });
 
@@ -1188,9 +1194,9 @@ namespace webapi.Models
                     .HasColumnType("timestamp")
                     .HasDefaultValueSql("'CURRENT_TIMESTAMP'");
 
-                entity.Property(e => e.PassHash).HasColumnType("binary(1)");
+                entity.Property(e => e.PassHash).HasMaxLength(128);
 
-                entity.Property(e => e.PassSalt).HasColumnType("binary(1)");
+                entity.Property(e => e.PassSalt).HasMaxLength(128);
 
                 entity.Property(e => e.PositionId).HasColumnType("int(11)");
 

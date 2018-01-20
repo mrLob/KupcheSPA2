@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms/src/model';
+import { MatDialog, MatDialogRef } from '@angular/material';
 
+import { OrdersFormComponent } from '../orders-form/orders-form.component';
 import { OrdersService } from '../../services/orders.service';
 import { Order } from '../../shared/models';
 
@@ -13,24 +15,27 @@ import { Order } from '../../shared/models';
 export class OrdersComponent implements OnInit {
     public order: Order = new Order();
     public orders: Order[];
-    changed: boolean;
+    changed: boolean = false;
 
-    constructor(private service: OrdersService) {}
+    constructor(private service: OrdersService,
+        public dialog: MatDialog) {}
 
     ngOnInit() {
         this.loadOrders();
-        this.changed = false;
     }
-    change(id: Order) {
+    change(id: Order): void {
         this.order = id;
         console.log(this.order.idOrders);
         this.changed = true;
     }
-    onChanged() {
-        this.changed = !this.changed;
+    onChanged(): void {
+        this.changed = false;
     }
-    loadOrders() {
+    loadOrders(): void {
         this.service.getOrders()
         .subscribe((data: Order[]) => this.orders = data);
+    }
+    openDialog(): void {
+        const dialog = this.dialog.open(OrdersFormComponent);
     }
 }

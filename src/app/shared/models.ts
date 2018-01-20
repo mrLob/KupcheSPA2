@@ -7,7 +7,8 @@ export class Order {
         public cost?: number,
         public usersId?: number,
         public thereImages?: boolean,
-        public thereFiles?: boolean
+        public thereFiles?: boolean,
+        public upTo?: string
     ) {}
 }
 export class User {

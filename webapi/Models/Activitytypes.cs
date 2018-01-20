@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace webapi
+namespace webapi 
 {
     public partial class Activitytypes
     {

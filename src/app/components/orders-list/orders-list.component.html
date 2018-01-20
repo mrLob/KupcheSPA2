@@ -8,29 +8,24 @@
 
     <!-- Name Column -->
     <ng-container matColumnDef="caption">
-    <mat-header-cell *matHeaderCellDef> Заголовок </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.caption}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef> Заголовок </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.caption}} </mat-cell>
     </ng-container>
 
     <!-- Weight Column -->
-    <ng-container matColumnDef="cost">
-    <mat-header-cell *matHeaderCellDef> Стоимость </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.cost}} </mat-cell>
-    </ng-container>
+    
 
     <ng-container matColumnDef="text">
         <mat-header-cell *matHeaderCellDef> Содержание </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.text}} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="action">
-        <mat-header-cell *matHeaderCellDef> Действие </mat-header-cell>
-        <mat-cell *matCellDef="let element"> 
-            <button mat-button (click)="onClick(element)">Взглянуть</button>
-        </mat-cell>
+    <ng-container matColumnDef="cost">
+        <mat-header-cell *matHeaderCellDef> Стоимость </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.cost}} </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"(click)="onClick(row)"></mat-row>
 
 </mat-table>
 
