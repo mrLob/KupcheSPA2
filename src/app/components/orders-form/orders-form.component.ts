@@ -54,7 +54,12 @@ export class OrdersFormComponent implements OnInit {
         // this.ordersService.createOrders(this.order);
 
         console.log(this.order);
-        this.ordersService.createOrders(this.order);
-        // this.order = new Order();
+        this.ordersService.create(this.order).subscribe(data => {
+            console.log(data);
+        },
+        error => {
+            console.log(error._body);
+        });
+        this.order = new Order();
     }
 }

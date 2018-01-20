@@ -20,8 +20,8 @@ export class OrdersService {
         return this.http.get<Order[]>(this.url + '/');
     }
 
-    createOrders(neworder: Order) {
-        return this.http.post<Order>(this.url, neworder);
+    create(order: Order) {
+        return this.http.post(this.url, order);
     }
 
 }

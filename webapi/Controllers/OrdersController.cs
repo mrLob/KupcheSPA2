@@ -42,6 +42,7 @@ namespace  webapi.Controllers
                 neworder.Caption = order.Caption;
                 neworder.Text = order.Text;
                 neworder.Cost = order.Cost;
+                neworder.Url = "";
                 neworder.UsersId = 1;
                 
                 using(servicedbContext db = new servicedbContext())
