@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace webapi 
+namespace webapi
 {
     public partial class Images
     {
         public Images()
         {
+            Companies = new HashSet<Companies>();
             Orderimages = new HashSet<Orderimages>();
         }
 
@@ -19,6 +20,7 @@ namespace webapi
         public DateTimeOffset LastUpdate { get; set; }
 
         public Users User { get; set; }
+        public ICollection<Companies> Companies { get; set; }
         public ICollection<Orderimages> Orderimages { get; set; }
     }
 }
