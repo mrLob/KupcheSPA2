@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace webapi 
+namespace webapi
 {
     public partial class Companies
     {
         public Companies()
         {
             Companyactivity = new HashSet<Companyactivity>();
+            Companyorders = new HashSet<Companyorders>();
             Pricelist = new HashSet<Pricelist>();
             Users = new HashSet<Users>();
         }
@@ -22,9 +23,12 @@ namespace webapi
         public sbyte? IsDeleted { get; set; }
         public DateTimeOffset AdditionTime { get; set; }
         public DateTimeOffset LastUpdate { get; set; }
+        public int? ImageId { get; set; }
 
         public Addresses Address { get; set; }
+        public Images Image { get; set; }
         public ICollection<Companyactivity> Companyactivity { get; set; }
+        public ICollection<Companyorders> Companyorders { get; set; }
         public ICollection<Pricelist> Pricelist { get; set; }
         public ICollection<Users> Users { get; set; }
     }

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
-import { Order } from '../shared/models';
+import { Order, Company } from '../shared/models';
 import { AppConfig } from '../../app.config';
 
 @Injectable()
@@ -20,7 +20,7 @@ export class OrdersService {
         return this.http.get<Order[]>(this.url + '/');
     }
 
-    create(order: Order) {
+    create(order: any) {
         return this.http.post(this.url, order);
     }
 

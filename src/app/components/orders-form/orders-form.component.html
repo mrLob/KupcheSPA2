@@ -19,20 +19,20 @@
                     <mat-datepicker #myDatepicker></mat-datepicker>
                 </mat-form-field>
                 <mat-form-field [ngStyle]="{'width':'30%'}">
-                    <input matInput formControlName="cost" type="number" placeholder="cтоимость" value="0"/>
+                    <input matInput formControlName="cost" type="number" min="0" placeholder="cтоимость"/>
                     <span matSuffix [ngStyle]="{'font-size':'0.9rem'}">BYN</span> 
                 </mat-form-field>
             </form>            
             <button mat-raised-button align="end" [disabled]="!orderForm.valid" matStepperNext>Далее</button>
         </mat-step>
         <mat-step [stepControl]="orderForm" label="Получатель">
-            <mat-selection-list >
-                <mat-list-option *ngFor="let company of companies">{{company.name}}</mat-list-option>
-            </mat-selection-list> 
+            <mat-radio-group [ngStyle]="{'flex-direction':'column','display': 'inline-flex'}" [(ngModel)]="selectedCompany">
+                <mat-radio-button  *ngFor="let company of companies" [value]="company">{{company.name}}</mat-radio-button>
+            </mat-radio-group> 
             <button mat-button matStepperNext>Далее</button>
         </mat-step>
         <mat-step label="Данные для связи с вами">
-            <button mat-button (click)="onSubmit()">Далее</button>
+            <button mat-button (click)="onSubmit()">Отправить</button>
         </mat-step>
     </mat-horizontal-stepper>
 </div>

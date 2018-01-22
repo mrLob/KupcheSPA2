@@ -1,9 +1,8 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using MySQL.Data.EntityFrameworkCore.Extensions;
 
-namespace webapi.Models 
+namespace webapi.Models
 {
     public partial class servicedbContext : DbContext
     {
@@ -12,6 +11,7 @@ namespace webapi.Models
         public virtual DbSet<City> City { get; set; }
         public virtual DbSet<Companies> Companies { get; set; }
         public virtual DbSet<Companyactivity> Companyactivity { get; set; }
+        public virtual DbSet<Companyorders> Companyorders { get; set; }
         public virtual DbSet<Country> Country { get; set; }
         public virtual DbSet<Currencies> Currencies { get; set; }
         public virtual DbSet<Files> Files { get; set; }
@@ -38,14 +38,14 @@ namespace webapi.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-               //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 string dbServer = "86.57.161.56"; 
                 string dbUser = "KupecApp";
                 string dbPass = "Forma7369milk";
                 optionsBuilder.UseMySql("Server="+dbServer
                 +";user="+dbUser
                 +";password="+dbPass+
-                ";database=servicedb;");
+                ";database=servicedb;");               optionsBuilder.UseMySql("Server=86.57.161.56;user=KupecApp;password=Forma7369milk;database=servicedb;");
             }
         }
 
@@ -200,6 +200,9 @@ namespace webapi.Models
                 entity.HasIndex(e => e.AddressId)
                     .HasName("fk_Company_Addresses_idx");
 
+                entity.HasIndex(e => e.ImageId)
+                    .HasName("fk_Company_Images_idx");
+
                 entity.Property(e => e.IdCompany)
                     .HasColumnName("idCompany")
                     .HasColumnType("int(11)")
@@ -217,6 +220,8 @@ namespace webapi.Models
                 entity.Property(e => e.Contacts)
                     .IsRequired()
                     .HasColumnType("tinytext");
+
+                entity.Property(e => e.ImageId).HasColumnType("int(11)");
 
                 entity.Property(e => e.IsDeleted)
                     .HasColumnName("is_deleted")
@@ -244,6 +249,11 @@ namespace webapi.Models
                     .HasForeignKey(d => d.AddressId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_Company_Addresses");
+
+                entity.HasOne(d => d.Image)
+                    .WithMany(p => p.Companies)
+                    .HasForeignKey(d => d.ImageId)
+                    .HasConstraintName("fk_Company_Images");
             });
 
             modelBuilder.Entity<Companyactivity>(entity =>
@@ -288,6 +298,44 @@ namespace webapi.Models
                     .HasForeignKey(d => d.CompanyId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_CompanyActivity_2");
+            });
+
+            modelBuilder.Entity<Companyorders>(entity =>
+            {
+                entity.HasKey(e => e.IdCompanyOrders);
+
+                entity.ToTable("companyorders");
+
+                entity.HasIndex(e => e.IdCompanies)
+                    .HasName("fk_Company_idx");
+
+                entity.HasIndex(e => e.IdOrders)
+                    .HasName("fk_Order_idx");
+
+                entity.Property(e => e.IdCompanyOrders)
+                    .HasColumnName("idCompanyOrders")
+                    .HasColumnType("int(11)")
+                    .ValueGeneratedOnAdd();
+
+                entity.Property(e => e.IdCompanies)
+                    .HasColumnName("idCompanies")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.IdOrders)
+                    .HasColumnName("idOrders")
+                    .HasColumnType("int(11)");
+
+                entity.HasOne(d => d.IdCompaniesNavigation)
+                    .WithMany(p => p.Companyorders)
+                    .HasForeignKey(d => d.IdCompanies)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_Company");
+
+                entity.HasOne(d => d.IdOrdersNavigation)
+                    .WithMany(p => p.Companyorders)
+                    .HasForeignKey(d => d.IdOrders)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_Order");
             });
 
             modelBuilder.Entity<Country>(entity =>
@@ -688,6 +736,10 @@ namespace webapi.Models
                     .HasColumnType("decimal(6,2)")
                     .HasDefaultValueSql("'0.00'");
 
+                entity.Property(e => e.Description)
+                    .IsRequired()
+                    .HasColumnType("mediumtext");
+
                 entity.Property(e => e.Geomap)
                     .IsRequired()
                     .HasMaxLength(45)
@@ -702,10 +754,6 @@ namespace webapi.Models
                     .HasColumnName("last_update")
                     .HasColumnType("timestamp")
                     .HasDefaultValueSql("'CURRENT_TIMESTAMP'");
-
-                entity.Property(e => e.Text)
-                    .IsRequired()
-                    .HasColumnType("mediumtext");
 
                 entity.Property(e => e.ThereFiles)
                     .HasColumnName("there_files")
@@ -733,7 +781,7 @@ namespace webapi.Models
                 entity.HasOne(d => d.Users)
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.UsersId)
-                    .HasConstraintName("fk_Orders_1");
+                    .HasConstraintName("fk_Orders_Users");
             });
 
             modelBuilder.Entity<Positions>(entity =>

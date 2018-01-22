@@ -1,6 +1,7 @@
 import { Input, Output, Component, OnInit, EventEmitter } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DatePipe } from '@angular/common';
 
 import { OrdersService } from '../../services/orders.service';
 import { Order } from '../../shared/models';
@@ -16,7 +17,9 @@ import { CompaniesService } from '../../services/companies.service';
 export class OrdersFormComponent implements OnInit {
     public order: Order = new Order();
     public orders: Order[];
+    neworder: IOrder = new IOrder();
     companies: Company[];
+    selectedCompany: Company = new Company();
     orderForm: FormGroup;
     date = new Date();
     // tslint:disable-next-line:no-output-rename
@@ -28,7 +31,7 @@ export class OrdersFormComponent implements OnInit {
             this.orderForm = fb.group({
                 'caption': ['', [Validators.required]],
                 'description': ['', [Validators.required]],
-                'cost': ['', [Validators.required]],
+                'cost': [0, [Validators.required]],
                 'date': [new Date(this.date.getFullYear(), this.date.getMonth(), this.date.getDate() + 1), [Validators.required]]
             });
         }
@@ -44,22 +47,38 @@ export class OrdersFormComponent implements OnInit {
         .subscribe((data: Company[]) => this.companies = data);
     }
 
+    sC(c: any) {
+        console.log('post ' + c);
+    }
     onSubmit() {
-        console.log('post');
-        this.order.caption = this.orderForm.value.caption;
-        this.order.text = this.orderForm.value.description;
-        this.order.cost = this.orderForm.value.cost;
-        // this.order.upTo = this.orderForm.value.date;
-        // this.change.emit(this.order);
-        // this.ordersService.createOrders(this.order);
+        console.log('post ');
 
-        console.log(this.order);
-        this.ordersService.create(this.order).subscribe(data => {
-            console.log(data);
+        this.neworder.caption = this.orderForm.value.caption;
+        this.neworder.description = this.orderForm.value.description;
+        this.neworder.cost = this.orderForm.value.cost;
+        this.neworder.upTo = this.orderForm.value.date;
+        this.neworder.companyId = this.selectedCompany.idCompany;
+
+        this.change.emit(this.order);
+        console.log(this.orderForm);
+        console.log(this.selectedCompany);
+        this.ordersService.create(this.neworder).subscribe(data => {
+            console.log('response ' + data);
         },
         error => {
             console.log(error._body);
         });
         this.order = new Order();
     }
+}
+
+export class IOrder {
+    idOrder?: number;
+    caption?: string;
+    description?: string;
+    cost?: number;
+    geomap?: string;
+    upTo?: string;
+    companyId?: number;
+
 }

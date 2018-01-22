@@ -11,13 +11,10 @@
         <mat-header-cell *matHeaderCellDef> Заголовок </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.caption}} </mat-cell>
     </ng-container>
-
     <!-- Weight Column -->
-    
-
-    <ng-container matColumnDef="text">
-        <mat-header-cell *matHeaderCellDef> Содержание </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.text}} </mat-cell>
+    <ng-container matColumnDef="upTo">
+        <mat-header-cell *matHeaderCellDef> Актуально до</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.upTo |date: 'dd/MM/yyyy'}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="cost">
@@ -25,7 +22,7 @@
         <mat-cell *matCellDef="let element"> {{element.cost}} </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"(click)="onClick(row)"></mat-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onClick(row)"></mat-row>
 
 </mat-table>
 

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using webapi.Models;
+using webapi.DTO;
 
 namespace  webapi.Controllers
 {
@@ -32,17 +33,19 @@ namespace  webapi.Controllers
             }
         }
         [HttpPost]
-        public IActionResult PostOrders([FromBody]Orders order)
+        public IActionResult PostOrders([FromBody]OrderDto orderDto)
         {
             Console.WriteLine("Post order:");
             if(ModelState.IsValid)
             {
+                
                 Orders neworder = new Orders();
                 
-                neworder.Caption = order.Caption;
-                neworder.Text = order.Text;
-                neworder.Cost = order.Cost;
-                neworder.Url = "";
+                neworder.Caption = orderDto.Caption.Trim();
+                neworder.Description = orderDto.Description.Trim();
+                neworder.Cost = orderDto.Cost;
+                neworder.Url = DateTime.Now.ToString();
+                neworder.UpTo = orderDto.UpTo;
                 neworder.UsersId = 1;
                 
                 using(servicedbContext db = new servicedbContext())
@@ -50,14 +53,18 @@ namespace  webapi.Controllers
                     Console.WriteLine("Post order: " + neworder.Caption.ToString());
                     db.Orders.Add(neworder);
                     db.SaveChanges();
-                    Console.WriteLine("Post response order: " + neworder.IdOrders.ToString());
+                    Companyorders newRelation = new Companyorders();
+                    newRelation.IdCompanies = orderDto.CompanyId;
+                    newRelation.IdOrders = neworder.IdOrders; 
+                    db.Companyorders.Add(newRelation);
                     Console.WriteLine("Post response order: " + neworder.Caption.ToString());
                     return Ok(neworder);
                 }
             }
             else
             {
-                return BadRequest(ModelState);
+                Console.WriteLine(ModelState.ValidationState);
+                return BadRequest(ModelState.ValidationState);
             }
         }
     }

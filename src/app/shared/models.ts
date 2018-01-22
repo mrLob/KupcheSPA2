@@ -2,7 +2,7 @@ export class Order {
     constructor(
         public idOrders?: number,
         public caption?: string,
-        public text?: string,
+        public description?: string,
         public geomap?: string,
         public cost?: number,
         public usersId?: number,
@@ -43,7 +43,7 @@ export class Image {
 }
 export class Company {
    constructor(
-        public IdCompany?: number,
+        public idCompany?: number,
         public name?: string,
         public shortName?: string,
         public contacts?: string,

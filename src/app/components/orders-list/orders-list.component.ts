@@ -17,7 +17,7 @@ import { Order } from '../../shared/models';
 })
 export class OrdersListComponent implements OnInit {
 
-    public displayedColumns = ['caption', 'text', 'cost' ];
+    public displayedColumns = ['caption', 'upTo', 'cost' ];
     public dataSource= new  MatTableDataSource<IOrder>();
     // tslint:disable-next-line:no-input-rename
     @Input('model')
@@ -33,7 +33,7 @@ export class OrdersListComponent implements OnInit {
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
 
-// MatPaginator Inputs
+    // MatPaginator Inputs
     length = 100;
     pageSize = 10;
     pageSizeOptions = [ 4, 7, 10 ];
@@ -67,8 +67,9 @@ export class OrdersListComponent implements OnInit {
 export interface IOrder {
     idOrder?: number;
     caption?: string;
-    text?: string;
+    description?: string;
     cost?: number;
     geomap?: string;
+    upTo?: string;
 
 }
