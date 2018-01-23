@@ -95,6 +95,7 @@ namespace webapi.Controllers
             var userDto = _mapper.Map<IList<UserDto>>(users);
             return Ok(userDto);
         }
+        
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {

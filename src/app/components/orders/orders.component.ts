@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms/src/model';
 import { MatDialog, MatDialogRef } from '@angular/material';
 
@@ -18,7 +18,11 @@ export class OrdersComponent implements OnInit {
     changed: boolean = false;
 
     constructor(private service: OrdersService,
-        public dialog: MatDialog) {}
+        public dialog: MatDialog, private ref: ChangeDetectorRef) {
+            setInterval(() => {
+                this.loadOrders();
+              }, 1000);
+        }
 
     ngOnInit() {
         this.loadOrders();
