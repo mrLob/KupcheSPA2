@@ -45,7 +45,7 @@ namespace webapi.Models
                 optionsBuilder.UseMySql("Server="+dbServer
                 +";user="+dbUser
                 +";password="+dbPass+
-                ";database=servicedb;");               optionsBuilder.UseMySql("Server=86.57.161.56;user=KupecApp;password=Forma7369milk;database=servicedb;");
+                ";database=servicedb;");
             }
         }
 
