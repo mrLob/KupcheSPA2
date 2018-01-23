@@ -21,7 +21,7 @@ export class OrdersComponent implements OnInit {
         public dialog: MatDialog, private ref: ChangeDetectorRef) {
             setInterval(() => {
                 this.loadOrders();
-              }, 1000);
+              }, 10000);
         }
 
     ngOnInit() {
