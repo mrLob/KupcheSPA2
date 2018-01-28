@@ -9,7 +9,9 @@ namespace webapi.Helpers
         public AutoMapperProfile()
         {
             CreateMap<Users, UserDto>();
-            CreateMap<UserDto, Users>();   
+            CreateMap<UserDto, Users>(); 
+            CreateMap<Companies, CompanyDto>();
+            CreateMap<CompanyDto, Companies>();  
         }
     }
 }

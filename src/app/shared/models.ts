@@ -1,3 +1,11 @@
+export class Address {
+    constructor(
+        public idAddresses?: number,
+        public street?: string,
+        public number?: string,
+        public flat?: string
+    ) {}
+}
 export class Order {
     constructor(
         public idOrders?: number,
@@ -49,7 +57,7 @@ export class Company {
         public contacts?: string,
         public about?: string,
         public pan?: string,
-        public addressId?: number,
-        public isDeleted?: boolean
+        public imagesId?: number,
+        public addressId?: number
     ) {}
 }

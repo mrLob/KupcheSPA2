@@ -1,41 +1,91 @@
- <h2>Register</h2>
-<form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
-    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
-        <label for="lastName">Фамилия</label>
-        <input type="text" class="form-control" name="lastName" [(ngModel)]="user.lastName" #lastName="ngModel" required />
-        <div *ngIf="f.submitted && !lastName.valid" class="help-block">Last Name is required</div>
-    </div>
-    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
-        <label for="firstName">Имя</label>
-        <input type="text" class="form-control" name="firstName" [(ngModel)]="user.firstName" #firstName="ngModel" required />
-        <div *ngIf="f.submitted && !firstName.valid" class="help-block">First Name is required</div>
-    </div>
-    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
-        <label for="secondName">Отчество</label>
-        <input type="text" class="form-control" name="secondName" [(ngModel)]="user.secondName" #secondName="ngModel" required />
-        <div *ngIf="f.submitted && !secondName.valid" class="help-block">Last Name is required</div>
-    </div>
-    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
-        <label for="telephone">Телефонный номер</label>
-        <input type="tel" class="form-control" name="telephone" [(ngModel)]="user.telephone" #telephone="ngModel" required />
-        <div *ngIf="f.submitted && !telephone.valid" class="help-block">Last Name is required</div>
-    </div>
-    <div class="form-group">
-            <label>Email</label>
-            <input class="form-control" name="email" [(ngModel)]="user.email" #email="ngModel" 
-                required email />
-            <div *ngIf="f.submitted && !email.valid" class="help-block">Некорректный е-меил!</div>
-    </div>
-    <div class="form-group" [ngClass]="{ 'has-error': f.submitted }">
-        
-        <input type="password" class="form-control" name="pass" [(ngModel)]="user.pass" #password="ngModel" required />
-        
-    </div>
-    <div class="form-group">
-        <button [disabled]="loading" class="btn btn-primary">Register</button>
-        
-        <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-        <a [routerLink]="['/login']" class="btn btn-link">Cancel</a>
-    </div>
-    
-</form>
+ <mat-horizontal-stepper class="panel-v" [linear]="true">
+    <mat-step [stepControl]="regUserForm" label="Пользователь">
+            <form [formGroup]="regUserForm"  novalidate>
+                <mat-form-field [ngStyle]="{'width':'80%','margin-left':'5%','margin-right':'5%'}">
+                    <input matInput type="text" placeholder="Фамилия" formControlName="lastName" required />
+                </mat-form-field>
+                <mat-form-field [ngStyle]="{'width':'80%','margin-left':'5%','margin-right':'5%'}">
+                    <input matInput type="text" placeholder="Имя" formControlName="firstName" required />
+                </mat-form-field>
+                <mat-form-field [ngStyle]="{'width':'80%','margin-left':'5%','margin-right':'5%'}">
+                    <input matInput type="text" placeholder="Отчество" formControlName="secondName"/>
+                </mat-form-field>
+                <mat-form-field [ngStyle]="{'width':'80%','margin-left':'5%','margin-right':'5%'}">
+                    <input matInput placeholder="Телефон" type="tel" formControlName="telephone"/>
+                </mat-form-field>
+                <mat-form-field [ngStyle]="{'width':'80%','margin-left':'5%','margin-right':'5%'}">
+                    <input matInput placeholder="Эл. почта" formControlName="email" required email />                       
+                </mat-form-field>
+                <mat-form-field [ngStyle]="{'width':'80%','margin-left':'5%','margin-right':'5%'}">                    
+                    <input matInput placeholder="Пароль" type="password" formControlName="password" required />    
+                </mat-form-field>
+                <mat-form-field [ngStyle]="{'width':'80%','margin-left':'5%','margin-right':'5%'}">                    
+                    <input matInput placeholder="Повторите пароль" type="password" formControlName="repeat" required />    
+                </mat-form-field>
+                <div class="form-group">
+                    <button mat-raised-button color="accent" [disabled]="!regUserForm.valid" matStepperNext>Далее</button>
+                    <a mat-button color="warn" [routerLink]="['/login']" class="btn btn-link">Отмена</a>
+                </div>    
+            </form>
+    </mat-step>
+    <mat-step [stepControl]="regCompanyForm" label="Компания">
+        <form [formGroup]="regAddressForm" novalidate>   
+            <mat-form-field [ngStyle]="{'width':'40%','margin-left':'5%'}">
+                    <input matInput type="text" required placeholder="Улица" formControlName="street"/>
+            </mat-form-field>
+            <mat-form-field [ngStyle]="{'width':'20%'}">
+                    <input matInput type="text" required placeholder="Дом" formControlName="number"/>
+            </mat-form-field>
+            <mat-form-field [ngStyle]="{'width':'20%','margin-right':'5%'}">
+                    <input matInput type="text" required placeholder="Помещение" formControlName="flat"/>
+            </mat-form-field>
+        </form>
+        <mat-divider></mat-divider>
+        <form [formGroup]="regCompanyForm" novalidate>
+            <mat-form-field [ngStyle]="{'width':'80%','margin-left':'5%','margin-right':'5%'}">
+                <input matInput type="text" placeholder="Полное наименование" formControlName="name" required />
+            </mat-form-field>
+            <mat-form-field [ngStyle]="{'width':'80%','margin-left':'5%','margin-right':'5%'}">
+                <input matInput type="text" placeholder="Короткое наименование ( вывеска )" formControlName="shortName" required />
+            </mat-form-field>
+            <mat-form-field [ngStyle]="{'width':'80%','margin-left':'5%','margin-right':'5%'}">
+                <input matInput type="text" formControlName="pan" placeholder="УНН" required />
+            </mat-form-field>
+            <mat-form-field [ngStyle]="{'width':'80%','margin-left':'5%','margin-right':'5%'}">
+                <textarea matInput type="text" formControlName="about" placeholder="О компании" required></textarea>                       
+            </mat-form-field>            
+            <mat-form-field [ngStyle]="{'width':'80%','margin-left':'5%','margin-right':'5%'}">                
+                <input matInput type="text" placeholder="Ваши контакты" #cont />
+                <mat-select #contType [ngStyle]="{'min-width':'120px'}" value="email" matSuffix>
+                    <mat-option *ngFor="let type of contactType" [value]="type.value">{{type.name}}</mat-option>
+                </mat-select>
+                <button mat-button *ngIf="cont.value" matSuffix mat-icon-button aria-label="Clear" (click)="cont.value=''">
+                    <mat-icon class="mat-18">close</mat-icon>
+                </button>
+                <button mat-icon-button (click)="addContact(cont.value,contType.value)" (click)="cont.value = ''" matSuffix>
+                    <mat-icon class="mat-18">keyboard_return</mat-icon>
+                </button>
+            </mat-form-field>
+            <div [ngStyle]="{'width':'80%','margin-left':'5%','margin-right':'5%'}" [innerHtml]="contactList">{{contactList}}</div>
+            <input id="file-input" accept="image/" type="file" (change)="addImage($event)" hidden="true" equired/>
+                <label  for="file-input">
+                    <a mat-icon-button>
+                        <mat-icon class="mat-18">file_upload</mat-icon>
+                        Загрузить изображение
+                    </a>
+            </label>
+            <div>
+                <button mat-raised-button color="accent" [disabled]="!regCompanyForm.valid && regCompanyForm.value.contacts.length < 2" matStepperNext>Далее2</button>
+                <a mat-button color="warn" [routerLink]="['/login']" class="btn btn-link">Отмена</a>
+            </div>    
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="regCompanyForm" label="Завершение">
+
+        <mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>
+
+        <button mat-raised-button color="accent" (click)="register()" [disabled]="loading">Зарегестрировать</button>
+
+        <mat-spinner *ngIf="loading"></mat-spinner>
+    </mat-step>
+ </mat-horizontal-stepper>

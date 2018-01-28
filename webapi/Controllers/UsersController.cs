@@ -21,12 +21,15 @@ namespace webapi.Controllers
     public class UsersController : Controller
     {
         private IMapper _mapper;
+        private ICompanyService _companyService;
         private IUserService _userService;
         private readonly AppSettings _appSettings;
         public UsersController( IUserService userService,
+            ICompanyService companyService,
             IMapper mapper, 
             IOptions<AppSettings> appSettings )
         {
+            _companyService = companyService;
             _userService = userService;
             _mapper = mapper;
             _appSettings = appSettings.Value;
@@ -74,13 +77,24 @@ namespace webapi.Controllers
         }
         [AllowAnonymous]
         [HttpPost]
-        public IActionResult Register([FromBody]UserDto userDto)
+        public IActionResult Register([FromBody]RegistrationDto userDto)
         {
-            var regUser = _mapper.Map<Users>(userDto);
+            var regCompany = _mapper.Map<Companies>(userDto.company);
+            try
+            {
+                Console.WriteLine("Register company!");
+                _companyService.Create(regCompany);
+            }
+            catch(AppException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            userDto.user.CompanyId = regCompany.IdCompany;
+            var regUser = _mapper.Map<Users>(userDto.user);
             try
             {
                 Console.WriteLine("Register user!");
-                _userService.Create(regUser, userDto.Pass);
+                _userService.Create(regUser, userDto.user.Pass);
                 return Ok();
             }
             catch(AppException ex)

@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { User } from '../shared/models';
 import { Observable } from 'rxjs/Observable';
 import { AppConfig } from '../../app.config';
+import { retry } from 'rxjs/operator/retry';
 
 @Injectable()
 export class UserService {
@@ -24,6 +25,9 @@ export class UserService {
 
     create(user: User) {
         return this.http.post(this.url, user, this.jwt());
+    }
+    register(reg: any) {
+        return this.http.post(this.url, reg, this.jwt());
     }
 
     update(user: User) {

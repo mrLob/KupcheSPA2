@@ -9,9 +9,10 @@
                     <mat-hint [ngStyle]="{'font-size':'0.9rem'}" align="end">{{caption.value?.length || 0}}/255</mat-hint>
                 </mat-form-field>
                 <p></p>
-                <mat-form-field [ngStyle]="{'width':'90%'}" hintLabel="не менее 50-ти символов">
+                <mat-form-field [ngStyle]="{'width':'90%'}" >
                     <textarea matInput type="text" #description formControlName="description" placeholder="а тут введите описание работ" minlength="50" value=""></textarea>
-                    <mat-hint [ngStyle]="{'font-size':'0.9rem'}" align="end">50/{{description.value?.length || 0}}</mat-hint>
+                    <mat-hint [ngStyle]="{'font-size':'0.7rem'}" align="start">не менее 50-ти символов</mat-hint>
+                    <mat-hint [ngStyle]="{'font-size':'0.7rem'}" align="end">50/{{description.value?.length || 0}}</mat-hint>
                 </mat-form-field>                
                 <mat-form-field [ngStyle]="{'width':'30%'}" >
                     <input matInput [matDatepicker]="myDatepicker" formControlName="date">
