@@ -7,6 +7,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authorization;
 using webapi.Models;
+using webapi.DTO;
 
 namespace webapi.Controllers
 {
@@ -22,20 +23,38 @@ namespace webapi.Controllers
                 return Ok(db.Addresses.Last());
             }
         }
-        [HttpPost]
-        public async Task<IActionResult> Create([FromBody]Addresses address)
+        [HttpGet]
+        public IEnumerable<Addresses> GetAll()
         {
-            Addresses newAddr = new Addresses();
-            newAddr.Street = address.Street;
-            newAddr.Number = address.Number;
-            newAddr.Flat = address.Flat;
-            newAddr.CityId = 1;
             using( servicedbContext db = new servicedbContext() )
             {
-                await db.Addresses.AddAsync(newAddr);
-                await db.SaveChangesAsync();
+                IEnumerable<Addresses> addr = db.Addresses.Where(a => a.IsDeleted == 0).ToList();
+                return addr;
             }
-            return RedirectToAction("LastImage");
+        }
+        [HttpPost]
+        public IActionResult Create([FromBody]AddressDto address)
+        {
+            if(ModelState.IsValid)
+            {
+                Addresses newAddr = new Addresses();
+                newAddr.Street = address.Street;
+                newAddr.Number = address.Number;
+                newAddr.Flat = address.Flat;
+                newAddr.CityId = 1;
+                using( servicedbContext db = new servicedbContext() )
+                {
+                    db.Addresses.Add(newAddr);
+                    db.SaveChanges();
+                }
+                return Ok(new{
+                    IdAddress = newAddr.IdAddress
+                    });
+            }
+            else
+            {
+                return BadRequest(ModelState.ValidationState);
+            }
         }
     }
 }

@@ -1,6 +1,6 @@
 export class Address {
     constructor(
-        public idAddresses?: number,
+        public idAddress?: number,
         public street?: string,
         public number?: string,
         public flat?: string

@@ -116,47 +116,72 @@ export class RegisterComponent {
         this.addr.number = this.regAddressForm.value.number;
         this.addr.flat = this.regAddressForm.value.flat;
         this.regis.company = new Company();
-        this.regis.company.name = this.regCompanyForm.value.name;
-        this.regis.company.shortName = this.regCompanyForm.value.shortName;
-        this.regis.company.about = this.regCompanyForm.value.about;
-        this.regis.company.pan = this.regCompanyForm.value.pan;
-        this.regis.company.contacts = this.regCompanyForm.value.contacts;
-        this.addressService.create(this.addr).subscribe(data => {
-            this.regis.company.addressId = data.json().idAddresses;
-        });
-        if (this.files) {
-            let files : FileList = this.files;
-            const formData = new FormData();
-            for (let i = 0; i < files.length; i++) {
-                formData.append('file', files[i]);
-            }
-            this.fileService.uploadImage(formData).subscribe(data => {
-                console.log(data);
-                this.regis.company.imagesId = data.json().idImages ;
-            });
-        } else {
-            this.regis.company.imagesId = 1;
-        }
-        this.progress = 30;
         this.regis.user = new User();
-        this.regis.user.email = this.regUserForm.value.email;
-        this.regis.user.firstName = this.regUserForm.value.firstName;
-        this.regis.user.lastName = this.regUserForm.value.lastName;
-        this.regis.user.secondName = this.regUserForm.value.secondName;
-        this.regis.user.pass = this.regUserForm.value.password;
-        this.regis.user.telephone = this.regUserForm.value.telephone;
-        this.progress = 60;
-
-        this.userService.register(this.regis).subscribe(data => {
-            this.alertService.success('Registration successful', true);
-            this.router.navigate(['/login']);
-            this.progress = 100;
-        },
-        error => {
-            console.log(error._body);
-            this.loading = false;
-            this.progress = 0;
-        });
+                if (this.files) {
+                    let files : FileList = this.files;
+                    const formData = new FormData();
+                    for (let i = 0; i < files.length; i++) {
+                        formData.append('file', files[i]);
+                    }
+                    this.fileService.uploadImage(formData).subscribe(dataIm => {
+                        this.addressService.create(this.addr).subscribe( data => {
+                            this.regis.company.imagesId = dataIm.json().idImages;
+                            this.regis.company.addressId = data.json().idAddress;
+                            this.regis.company.name = this.regCompanyForm.value.name;
+                            this.regis.company.shortName = this.regCompanyForm.value.shortName;
+                            this.regis.company.about = this.regCompanyForm.value.about;
+                            this.regis.company.pan = this.regCompanyForm.value.pan;
+                            this.regis.company.contacts = this.regCompanyForm.value.contacts;
+                            this.progress = 30;
+                            this.regis.user.email = this.regUserForm.value.email;
+                            this.regis.user.firstName = this.regUserForm.value.firstName;
+                            this.regis.user.lastName = this.regUserForm.value.lastName;
+                            this.regis.user.secondName = this.regUserForm.value.secondName;
+                            this.regis.user.pass = this.regUserForm.value.password;
+                            this.regis.user.telephone = this.regUserForm.value.telephone;
+                            this.progress = 60;
+                            this.userService.register(this.regis).subscribe(dataR => {
+                                this.alertService.success('Registration successful', true);
+                                this.router.navigate(['/login']);
+                                this.progress = 100;
+                            },
+                            error => {
+                                console.log(error._body);
+                                this.loading = false;
+                                this.progress = 0;
+                            });
+                        });
+                    });
+                } else {
+                    this.regis.company.imagesId = 1;
+                    this.addressService.create(this.addr).subscribe( data => {
+                        this.regis.company.addressId = data.json().idAddress;
+                        this.regis.company.name = this.regCompanyForm.value.name;
+                        this.regis.company.shortName = this.regCompanyForm.value.shortName;
+                        this.regis.company.about = this.regCompanyForm.value.about;
+                        this.regis.company.pan = this.regCompanyForm.value.pan;
+                        this.regis.company.contacts = this.regCompanyForm.value.contacts;
+                        this.progress = 30;
+                        this.regis.user.email = this.regUserForm.value.email;
+                        this.regis.user.firstName = this.regUserForm.value.firstName;
+                        this.regis.user.lastName = this.regUserForm.value.lastName;
+                        this.regis.user.secondName = this.regUserForm.value.secondName;
+                        this.regis.user.pass = this.regUserForm.value.password;
+                        this.regis.user.telephone = this.regUserForm.value.telephone;
+                        this.progress = 60;
+                        this.userService.register(this.regis).subscribe(dataR => {
+                            this.alertService.success('Registration successful', true);
+                            this.router.navigate(['/login']);
+                            this.progress = 100;
+                        },
+                        error => {
+                            console.log(error._body);
+                            this.loading = false;
+                            this.progress = 0;
+                        });
+                    });
+                }
+        console.log('id: ' + this.regis.company.addressId);
     }
 
 }

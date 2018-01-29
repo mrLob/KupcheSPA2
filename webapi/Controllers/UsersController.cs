@@ -24,12 +24,11 @@ namespace webapi.Controllers
         private ICompanyService _companyService;
         private IUserService _userService;
         private readonly AppSettings _appSettings;
+
         public UsersController( IUserService userService,
-            ICompanyService companyService,
             IMapper mapper, 
             IOptions<AppSettings> appSettings )
         {
-            _companyService = companyService;
             _userService = userService;
             _mapper = mapper;
             _appSettings = appSettings.Value;
@@ -79,11 +78,15 @@ namespace webapi.Controllers
         [HttpPost]
         public IActionResult Register([FromBody]RegistrationDto userDto)
         {
+            Console.WriteLine("Reg");
+            if( userDto.company == null || userDto.company.AddressId == 0) return BadRequest();
+            if( userDto.user == null || userDto.user.Email == "") return BadRequest();
+            CompanyService cs = new CompanyService();
             var regCompany = _mapper.Map<Companies>(userDto.company);
             try
             {
                 Console.WriteLine("Register company!");
-                _companyService.Create(regCompany);
+                cs.Create(regCompany);
             }
             catch(AppException ex)
             {

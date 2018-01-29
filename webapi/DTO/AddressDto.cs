@@ -4,7 +4,7 @@ namespace webapi.DTO
     {
         public int IdAddress { get; set; }
         public string Street { get; set; }
-        public int? Number { get; set; }
+        public string Number { get; set; }
         public string Flat { get; set; }
         public string Zip { get; set; }
         public string Geomap { get; set; }

@@ -1,4 +1,4 @@
- <mat-horizontal-stepper class="panel-v" [linear]="true">
+ <mat-horizontal-stepper class="panel-v" [linear]="false">
     <mat-step [stepControl]="regUserForm" label="Пользователь">
             <form [formGroup]="regUserForm"  novalidate>
                 <mat-form-field [ngStyle]="{'width':'80%','margin-left':'5%','margin-right':'5%'}">
@@ -28,7 +28,7 @@
                 </div>    
             </form>
     </mat-step>
-    <mat-step [stepControl]="regCompanyForm" label="Компания">
+    <mat-step label="Компания">
         <form [formGroup]="regAddressForm" novalidate>   
             <mat-form-field [ngStyle]="{'width':'40%','margin-left':'5%'}">
                     <input matInput type="text" required placeholder="Улица" formControlName="street"/>
@@ -85,7 +85,9 @@
         <mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>
 
         <button mat-raised-button color="accent" (click)="register()" [disabled]="loading">Зарегестрировать</button>
+        <div [ngStyle]="{'width':'80%','margin-left':'5%','margin-right':'5%','float':'left'}" >        
+            <mat-spinner [diameter]="50" *ngIf="loading"></mat-spinner>
+        </div>
 
-        <mat-spinner *ngIf="loading"></mat-spinner>
     </mat-step>
  </mat-horizontal-stepper>

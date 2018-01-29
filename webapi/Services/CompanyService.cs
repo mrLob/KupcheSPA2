@@ -18,7 +18,6 @@ namespace webapi.Services
         }
         public Companies Create(Companies company)
         {
-            company.AddressId = 1;
             using(servicedbContext db = new servicedbContext())
             {
                 db.Companies.Add(company);
