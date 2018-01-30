@@ -1,10 +1,12 @@
 import { Component, OnInit, HostListener } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material';
 
 import { CompaniesService } from '../../services/companies.service';
 import { Company } from '../../shared/models';
+import { OrdersDialogComponent } from '../orders-dialog/orders-dialog.component';
 
 @Component({
-  selector: 'companies',
+  selector: 'app-companies',
   templateUrl: './companies.component.html',
   styleUrls: ['./companies.component.css'],
   providers: [CompaniesService]
@@ -13,9 +15,10 @@ import { Company } from '../../shared/models';
 export class CompaniesComponent implements OnInit {
 
   public companies: Company[];
-  public test= 3;
+  public columns= 3;
 
-  constructor(private sevice: CompaniesService) { }
+  constructor(private sevice: CompaniesService,
+    public dialog: MatDialog) { }
 
   ngOnInit() {
     this.sevice.getAll()
@@ -27,14 +30,20 @@ export class CompaniesComponent implements OnInit {
     console.log(element);
 
     if ( element > 980 ) {
-      this.test = 3;
+      this.columns = 3;
     }
     if (element <= 980) {
-      this.test = 2;
+      this.columns = 2;
     }
 
     if (element <= 750) {
-      this.test = 1;
+      this.columns = 1;
     }
+  }
+
+  onOrder(id: any) {
+    const dialog = this.dialog.open(OrdersDialogComponent, {
+      data: {cId: id}
+    });
   }
 }

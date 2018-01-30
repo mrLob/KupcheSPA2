@@ -22,6 +22,8 @@ export class OrdersFormComponent implements OnInit {
     selectedCompany: Company = new Company();
     orderForm: FormGroup;
     date = new Date();
+    @Input() mode: string;
+    @Input() company: number;
     // tslint:disable-next-line:no-output-rename
     @Output('newOrder') change = new EventEmitter<Order>();
 
@@ -52,13 +54,19 @@ export class OrdersFormComponent implements OnInit {
     }
     onSubmit() {
         console.log('post ');
-
-        this.neworder.caption = this.orderForm.value.caption;
-        this.neworder.description = this.orderForm.value.description;
-        this.neworder.cost = this.orderForm.value.cost;
-        this.neworder.upTo = this.orderForm.value.date;
-        this.neworder.companyId = this.selectedCompany.idCompany;
-
+        if ( this.mode !== 'short') {
+            this.neworder.caption = this.orderForm.value.caption;
+            this.neworder.description = this.orderForm.value.description;
+            this.neworder.cost = this.orderForm.value.cost;
+            this.neworder.upTo = this.orderForm.value.date;
+            this.neworder.companyId = this.selectedCompany.idCompany;
+        } else {
+            this.neworder.caption = this.orderForm.value.caption;
+            this.neworder.description = this.orderForm.value.description;
+            this.neworder.cost = this.orderForm.value.cost;
+            this.neworder.upTo = this.orderForm.value.date;
+            this.neworder.companyId = this.company;
+        }
         this.change.emit(this.order);
         console.log(this.orderForm);
         console.log(this.selectedCompany);

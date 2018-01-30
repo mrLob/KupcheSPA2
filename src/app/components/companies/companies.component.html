@@ -1,5 +1,5 @@
 
-        <mat-grid-list cols="{{test}}" rowHeight="fit" [style.height]="'500px'" [gutterSize]="'10px'">
+        <mat-grid-list cols="{{columns}}" rowHeight="fit" [style.height]="'500px'" [gutterSize]="'10px'">
             <mat-grid-tile *ngFor="let company of companies" [colspan]="1" [rowspan]="1">
                 <mat-card class="content">
                     <mat-card-header>
@@ -12,7 +12,7 @@
                     </mat-card-content>
                     <mat-card-actions align="end">
                         <button mat-button color="primary" (click)="onAction(event)">Подробнее</button>
-                        <button mat-button (click)="onAction(event)">Отправить заявку</button>                        
+                        <button mat-button (click)="onOrder(company.idCompany)">Отправить заявку</button>                        
                     </mat-card-actions>
                     <mat-card-footer>
                         <mat-chip-list>

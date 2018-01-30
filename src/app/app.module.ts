@@ -30,6 +30,7 @@ import { LoginDialogComponent } from './components/login-dialog/login-dialog.com
 import { QuestionDialogComponent } from './components/question-dialog/question-dialog.component';
 import { ProfileBarComponent } from './components/profile-bar/profile-bar.component';
 import { CompanyViewComponent } from './components/company-view/company-view.component';
+import { OrdersDialogComponent } from './components/orders-dialog/orders-dialog.component';
 
 @NgModule({
     declarations: [
@@ -53,7 +54,8 @@ import { CompanyViewComponent } from './components/company-view/company-view.com
         LoginDialogComponent,
         QuestionDialogComponent,
         ProfileBarComponent,
-        CompanyViewComponent
+        CompanyViewComponent,
+        OrdersDialogComponent
     ],
     imports: [
         FlexLayoutModule,
@@ -80,6 +82,7 @@ import { CompanyViewComponent } from './components/company-view/company-view.com
     ],
     entryComponents: [
         OrdersFormComponent,
+        OrdersDialogComponent,
         LoginDialogComponent,
         QuestionDialogComponent
     ]
