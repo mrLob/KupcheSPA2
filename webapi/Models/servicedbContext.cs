@@ -325,13 +325,13 @@ namespace webapi.Models
                     .HasColumnName("idOrders")
                     .HasColumnType("int(11)");
 
-                entity.HasOne(d => d.IdCompaniesNavigation)
+                entity.HasOne(d => d.Companies)
                     .WithMany(p => p.Companyorders)
                     .HasForeignKey(d => d.IdCompanies)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_Company");
 
-                entity.HasOne(d => d.IdOrdersNavigation)
+                entity.HasOne(d => d.Orders)
                     .WithMany(p => p.Companyorders)
                     .HasForeignKey(d => d.IdOrders)
                     .OnDelete(DeleteBehavior.ClientSetNull)

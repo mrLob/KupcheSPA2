@@ -48,13 +48,9 @@ export class OrdersFormComponent implements OnInit {
         this.companiesService.getAll()
         .subscribe((data: Company[]) => this.companies = data);
     }
-
-    sC(c: any) {
-        console.log('post ' + c);
-    }
     onSubmit() {
-        console.log('post ');
         if ( this.mode !== 'short') {
+            console.log('post T'+this.mode);
             this.neworder.caption = this.orderForm.value.caption;
             this.neworder.description = this.orderForm.value.description;
             this.neworder.cost = this.orderForm.value.cost;
@@ -68,8 +64,6 @@ export class OrdersFormComponent implements OnInit {
             this.neworder.companyId = this.company;
         }
         this.change.emit(this.order);
-        console.log(this.orderForm);
-        console.log(this.selectedCompany);
         this.ordersService.create(this.neworder).subscribe(data => {
             console.log('response ' + data);
         },
@@ -86,7 +80,7 @@ export class IOrder {
     description?: string;
     cost?: number;
     geomap?: string;
-    upTo?: string;
+    upTo?: Date;
     companyId?: number;
 
 }

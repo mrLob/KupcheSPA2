@@ -9,7 +9,7 @@ namespace webapi
         public int IdCompanies { get; set; }
         public int IdOrders { get; set; }
 
-        public Companies IdCompaniesNavigation { get; set; }
-        public Orders IdOrdersNavigation { get; set; }
+        public Companies Companies { get; set; }
+        public Orders Orders { get; set; }
     }
 }

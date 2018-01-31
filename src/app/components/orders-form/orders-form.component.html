@@ -3,10 +3,10 @@
     <mat-horizontal-stepper [linear]="true">
         <mat-step [stepControl]="orderForm" label="Заявка">
             <form [formGroup]="orderForm" novalidate (ngSubmit)="onSubmit()">
-                <mat-form-field [ngStyle]="{'width':'90%','font-size':'0.9rem'}" hintLabel="не более 255 символов">
-                    <input matInput type="text" #caption formControlName="caption" placeholder="тут введите заголовок" maxlength="255" value=""/>
+                <mat-form-field [ngStyle]="{'width':'90%','font-size':'0.9rem'}" hintLabel="не более 100 символов">
+                    <input matInput type="text" #caption formControlName="caption" placeholder="тут введите заголовок" maxlength="100" value=""/>
                     <span matSuffix></span> 
-                    <mat-hint [ngStyle]="{'font-size':'0.9rem'}" align="end">{{caption.value?.length || 0}}/255</mat-hint>
+                    <mat-hint [ngStyle]="{'font-size':'0.9rem'}" align="end">{{caption.value?.length || 0}}/100</mat-hint>
                 </mat-form-field>
                 <p></p>
                 <mat-form-field [ngStyle]="{'width':'90%'}" >
@@ -26,7 +26,7 @@
             </form>            
             <button mat-raised-button align="end" [disabled]="!orderForm.valid" matStepperNext>Далее</button>
         </mat-step>
-        <mat-step label="Получатель">
+        <mat-step *ngIf="mode != 'short'" label="Получатель">
             <mat-radio-group [ngStyle]="{'flex-direction':'column','display': 'inline-flex'}" [(ngModel)]="selectedCompany">
                 <mat-radio-button  *ngFor="let company of companies" [value]="company">{{company.name}}</mat-radio-button>
             </mat-radio-group> 

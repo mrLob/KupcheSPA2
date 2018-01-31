@@ -8,7 +8,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class OrdersDialogComponent implements OnInit {
   companyId: number;
-
+  mode = 'short';
   constructor(public dialogRef: MatDialogRef<OrdersDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
       this.companyId = data.cId;

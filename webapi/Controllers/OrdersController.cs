@@ -22,41 +22,45 @@ namespace  webapi.Controllers
                 return tender;
             }
         }
-        [HttpGet("{filter}")]
-        public IEnumerable<Orders> GetFiltered(string filter)
+        [HttpGet("{id}")]
+        public IActionResult GetFiltered(int id)
         {
+            List<Orders> ordList = new List<Orders>();
             using(servicedbContext db = new servicedbContext())
             {
-                IEnumerable<Orders> tender =  db.Orders.Where(o => o.Users.Company.Pan == filter).ToList();
-                Console.WriteLine("Get response orders!");
-                return tender;
+                IEnumerable<Companyorders> companyOrds =  db.Companyorders.Where(co => co.IdCompanies == id).ToList();
+                if(companyOrds == null || companyOrds.Count() == 0) return null;
+                foreach(var co in companyOrds)
+                {
+                    ordList.Add(db.Orders.Where(o => o.IdOrders == co.IdOrders).FirstOrDefault());
+                }
             }
+            IEnumerable<Orders> ords = ordList;
+            Console.WriteLine("Get response filter!");
+            return Ok(ords);
         }
         [HttpPost]
         public IActionResult PostOrders([FromBody]OrderDto orderDto)
         {
             Console.WriteLine("Post order:");
             if(ModelState.IsValid)
-            {
-                
-                Orders neworder = new Orders();
-                
+            {                
+                Orders neworder = new Orders();                
                 neworder.Caption = orderDto.Caption.Trim();
                 neworder.Description = orderDto.Description.Trim();
                 neworder.Cost = orderDto.Cost;
                 neworder.Url = DateTime.Now.ToString();
                 neworder.UpTo = orderDto.UpTo;
-                neworder.UsersId = 1;
-                
+                neworder.UsersId = 1;                
                 using(servicedbContext db = new servicedbContext())
                 {
                     Console.WriteLine("Post order: " + neworder.Caption.ToString());
                     db.Orders.Add(neworder);
-                    db.SaveChanges();
                     Companyorders newRelation = new Companyorders();
                     newRelation.IdCompanies = orderDto.CompanyId;
-                    newRelation.IdOrders = neworder.IdOrders; 
+                    newRelation.IdOrders = neworder.IdOrders;
                     db.Companyorders.Add(newRelation);
+                    db.SaveChanges();
                     Console.WriteLine("Post response order: " + neworder.Caption.ToString());
                     return Ok(neworder);
                 }

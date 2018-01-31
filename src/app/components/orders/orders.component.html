@@ -3,7 +3,7 @@
                 [hideToggle]="false">        
         <mat-expansion-panel  [hideToggle]="false" [expanded]="!changed">
             <mat-expansion-panel-header>Стол заказов</mat-expansion-panel-header>
-            <app-order-list [model]="orders" [dataSource]="orders" (change)="change($event)" ></app-order-list>
+            <app-order-list [dataSource]="orders" (change)="change($event)" ></app-order-list>
         </mat-expansion-panel>
         <mat-expansion-panel [hideToggle]="false" [disabled]="!changed" (closed)="onChanged()" [expanded]="changed">
             <mat-expansion-panel-header>Просмотр</mat-expansion-panel-header>

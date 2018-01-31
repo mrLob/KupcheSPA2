@@ -19,6 +19,8 @@ using MySQL.Data.EntityFrameworkCore.Extensions;
 using webapi.Models;
 using webapi.Helpers;
 using webapi.Services;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace webapi
 {
@@ -35,7 +37,10 @@ namespace webapi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
-            services.AddMvc();
+            services.AddMvc().AddJsonOptions(options => {//LoopReference
+                options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();//LoopReference
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;//LoopReference
+            });
             services.AddAutoMapper();
 
             var appSettingsSection = Configuration.GetSection("AppSettings");

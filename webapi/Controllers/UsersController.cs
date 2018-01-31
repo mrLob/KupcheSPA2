@@ -21,10 +21,9 @@ namespace webapi.Controllers
     public class UsersController : Controller
     {
         private IMapper _mapper;
-        private ICompanyService _companyService;
         private IUserService _userService;
         private readonly AppSettings _appSettings;
-
+        
         public UsersController( IUserService userService,
             IMapper mapper, 
             IOptions<AppSettings> appSettings )
