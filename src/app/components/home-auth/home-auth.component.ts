@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { StorageService } from '../../services/storage.service';
 import { OrdersService } from '../../services/orders.service';
 import { Order } from '../../shared/models';
 
@@ -12,14 +13,15 @@ import { Order } from '../../shared/models';
 export class HomeAuthComponent implements OnInit {
   public orders: Order[];
 
-  constructor(private service: OrdersService) {}
+  constructor(private service: OrdersService, public localStor: StorageService) {}
 
   ngOnInit() {
       this.loadOrders();
   }
 
   loadOrders() {
-      this.service.getOrders()
+      const cId = this.localStor.getLocalStorageItem('currentUser');
+      this.service.getFiltered(cId.company)
       .subscribe((data: Order[]) => this.orders = data);
 
   }

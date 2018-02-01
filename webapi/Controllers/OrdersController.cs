@@ -25,11 +25,12 @@ namespace  webapi.Controllers
         [HttpGet("{id}")]
         public IActionResult GetFiltered(int id)
         {
+            if(id == null || id == 0) return BadRequest();
             List<Orders> ordList = new List<Orders>();
             using(servicedbContext db = new servicedbContext())
             {
                 IEnumerable<Companyorders> companyOrds =  db.Companyorders.Where(co => co.IdCompanies == id).ToList();
-                if(companyOrds == null || companyOrds.Count() == 0) return null;
+                if(companyOrds == null || companyOrds.Count() == 0) return BadRequest("No orders for company!");
                 foreach(var co in companyOrds)
                 {
                     ordList.Add(db.Orders.Where(o => o.IdOrders == co.IdOrders).FirstOrDefault());

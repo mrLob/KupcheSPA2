@@ -57,7 +57,7 @@ namespace webapi.Controllers
             var tokenString = tokenHandler.WriteToken(token);
             servicedbContext context = new servicedbContext();
             var rules = context.Rules.Where(r => r.IdRules == authUser.RulesId);
-            var company = context.Companies.Where(c => c.IdCompany == authUser.CompanyId);
+            var company = context.Companies.Where(c => c.IdCompany == authUser.CompanyId).FirstOrDefault();
             Console.WriteLine("Return auth of "+ authUser.Email);
             return Ok(new {
                 IdUser = authUser.IdUsers,
@@ -69,7 +69,7 @@ namespace webapi.Controllers
                 isDeleted = authUser.IsDeleted,
                 isBlocked = authUser.IsBlocked,
                 Rule = rules,
-                Company = company,
+                Company = company.IdCompany,
                 Token = tokenString
             });
         }
