@@ -4,7 +4,7 @@
     <mat-card-subtitle>отображены заявки из ваших категорий</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-  <app-order-list [dataSource]="orders"></app-order-list>
+  <app-order-list *ngIf="orders.count != 0" [dataSource]="orders"></app-order-list>
   </mat-card-content>
   <mat-card-actions>
 

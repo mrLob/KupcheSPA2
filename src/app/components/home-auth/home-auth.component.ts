@@ -11,7 +11,7 @@ import { Order } from '../../shared/models';
   providers: [OrdersService]
 })
 export class HomeAuthComponent implements OnInit {
-  public orders: Order[];
+  public orders: Order[] = [];
 
   constructor(private service: OrdersService, public localStor: StorageService) {}
 

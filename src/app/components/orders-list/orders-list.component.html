@@ -5,7 +5,6 @@
 
     <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->
-
     <!-- Name Column -->
     <ng-container matColumnDef="caption">
         <mat-header-cell *matHeaderCellDef> Заголовок </mat-header-cell>
@@ -22,7 +21,7 @@
         <mat-cell *matCellDef="let element"> {{element.cost}} </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onClick(row)"></mat-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'highlight': selectedRowIndex == row}" (click)="highlight(row)" (click)="onClick(row)"></mat-row>
 
 </mat-table>
 

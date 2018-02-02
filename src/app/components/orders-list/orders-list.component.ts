@@ -18,7 +18,9 @@ import { Order } from '../../shared/models';
 export class OrdersListComponent implements OnInit {
 
     public displayedColumns = ['caption', 'upTo', 'cost' ];
-    public dataSource= new  MatTableDataSource<IOrder>();
+    public dataSource = new  MatTableDataSource<IOrder>();
+    hover = false;
+    selectedRowIndex = 1;
     // tslint:disable-next-line:no-input-rename
     @Input('model')
     public orders: IOrder[];
@@ -50,6 +52,9 @@ export class OrdersListComponent implements OnInit {
     ngAfterViewInit() {
     }
 
+    highlight(row) {
+        this.selectedRowIndex = row;
+    }
     public applyFilter(filterValue: string) {
         filterValue = filterValue.trim();
         if (filterValue === '') {
