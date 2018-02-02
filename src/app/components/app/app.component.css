@@ -1,5 +1,5 @@
   .example-container {
-    height: 93vh;
+    height: 97vh;
     background-color: #fffdef;
     background-image: url("../../back.png");
   }
@@ -24,6 +24,7 @@
   }
   .drawer-btn{
     position: relative;
+    color: #259f6c;
     display: block;
     height: 100%;
     padding: 0;
@@ -31,9 +32,13 @@
   mat-toolbar{
     position: relative;
     z-index: 2;
-    padding-left: 0;
+    padding-left: 0;    
+    background-color: #fffdef;
+    background-image: url("../../back.png");
   }
   mat-toolbar-row{
-    padding: 0px 0px;
+    padding: 0px 0px;    
+    background-color: #fffdef;
+    background-image: url("../../back.png");
   }
   
