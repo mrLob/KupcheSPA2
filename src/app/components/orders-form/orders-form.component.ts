@@ -33,7 +33,7 @@ export class OrdersFormComponent implements OnInit {
             this.orderForm = fb.group({
                 'caption': ['', [Validators.required]],
                 'description': ['', [Validators.required]],
-                'cost': [0, [Validators.required]],
+                'cost': [0.00, [Validators.required]],
                 'date': [new Date(this.date.getFullYear(), this.date.getMonth(), this.date.getDate() + 1), [Validators.required]]
             });
         }

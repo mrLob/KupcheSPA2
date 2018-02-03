@@ -2,27 +2,20 @@
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Искать" value="">
 </mat-form-field>
 <mat-table #table [dataSource]="dataSource">
-
-    <!--- Note that these columns can be defined in any order.
-        The actual rendered columns are set as a property on the row definition" -->
-    <!-- Name Column -->
     <ng-container matColumnDef="caption">
         <mat-header-cell *matHeaderCellDef> Заголовок </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.caption}} </mat-cell>
     </ng-container>
-    <!-- Weight Column -->
     <ng-container matColumnDef="upTo">
         <mat-header-cell *matHeaderCellDef> Актуально до</mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.upTo |date: 'dd/MM/yyyy'}} </mat-cell>
     </ng-container>
-
     <ng-container matColumnDef="cost">
         <mat-header-cell *matHeaderCellDef> Стоимость </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.cost}} </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'highlight': selectedRowIndex == row}" (click)="highlight(row)" (click)="onClick(row)"></mat-row>
-
 </mat-table>
 
 <mat-paginator #paginator

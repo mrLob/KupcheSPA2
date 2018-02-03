@@ -1,23 +1,24 @@
-
-        <mat-grid-list cols="{{columns}}" rowHeight="fit" [style.height]="'500px'" [gutterSize]="'10px'">
-            <mat-grid-tile *ngFor="let company of companies" [colspan]="1" [rowspan]="1">
-                <mat-card class="content">
-                    <mat-card-header>
-                        <img matCardAvatar src="https://cdn1.iconfinder.com/data/icons/rcons-user-action/512/users_woman-512.png">
-                        <mat-card-title [ngStyle]="{'font-size':'1.2rem'}">{{company.shortName}}</mat-card-title>
-                        <mat-card-subtitle [ngStyle]="{'font-size': '0.7rem'}">УНП: {{company.pan}}</mat-card-subtitle>
-                    </mat-card-header>
-                    <mat-card-content>
-                        {{company.about}}
-                    </mat-card-content>
-                    <mat-card-actions align="end">
-                        <button mat-button color="primary" (click)="onAction(event)">Подробнее</button>
-                        <button mat-button (click)="onOrder(company.idCompany)">Отправить заявку</button>                        
-                    </mat-card-actions>
-                    <mat-card-footer>
-                        <mat-chip-list>
-                        </mat-chip-list>                        
-                    </mat-card-footer>
-                </mat-card>
-            </mat-grid-tile>
-        </mat-grid-list>
+<div [ngStyle]="{'height':'100%'}">
+    <mat-grid-list [ngStyle]="{'height':'100%'}" cols="{{columns}}" rowHeight="fit" [gutterSize]="'10px'">
+        <mat-grid-tile *ngFor="let company of companies" [colspan]="1" [rowspan]="1">
+            <mat-card class="content">
+                <mat-card-header>
+                    <img matCardAvatar src="https://cdn1.iconfinder.com/data/icons/rcons-user-action/512/users_woman-512.png">
+                    <mat-card-title [ngStyle]="{'font-size':'1.2rem'}">{{company.shortName}}</mat-card-title>
+                    <mat-card-subtitle [ngStyle]="{'font-size': '0.7rem'}">УНП: {{company.pan}}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    {{company.about}}
+                </mat-card-content>
+                <mat-card-actions align="end">
+                    <button mat-button color="primary" (click)="onAction(event)">Подробнее</button>
+                    <button mat-button (click)="onOrder(company.idCompany)">Отправить заявку</button>                        
+                </mat-card-actions>
+                <mat-card-footer>
+                    <mat-chip-list>
+                    </mat-chip-list>                        
+                </mat-card-footer>
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

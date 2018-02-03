@@ -1,0 +1,21 @@
+<div *ngFor="let item of items">
+  <mat-card>
+      <mat-card-header>
+          <img matCardAvatar src="Avatar source">
+          <mat-card-title>Title</mat-card-title>
+          <mat-card-subtitle>Subtitle</mat-card-subtitle>
+      </mat-card-header>
+      <img matCardImage src="Card wide image source">
+      <mat-card-content>
+          Text content
+      </mat-card-content>
+      <mat-card-actions align="start">
+          <button mat-button (click)="onAction(event)">Action1</button>
+          <button mat-button (click)="onAction(event)">Action2</button>
+          
+      </mat-card-actions>
+      <mat-card-footer>
+          Footer
+      </mat-card-footer>
+  </mat-card>
+</div>

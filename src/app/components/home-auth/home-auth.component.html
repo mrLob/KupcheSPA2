@@ -1,17 +1,18 @@
 <mat-tab-group>
   <mat-tab label="Заявки">
-    <mat-card class="panel">
-      <mat-card-header>
-        <mat-card-title>Интересные заявки</mat-card-title>
-        <mat-card-subtitle>отображены заявки из ваших категорий</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-      <app-order-list *ngIf="orders.count != 0" [dataSource]="orders"></app-order-list>
-      </mat-card-content>
-      <mat-card-actions>
-
-      </mat-card-actions>
-    </mat-card>
+    <div class="panel">
+      <mat-accordion displayMode="default" [multi]="false"
+        [hideToggle]="false">        
+        <mat-expansion-panel [hideToggle]="false" [expanded]="!changed">
+          <mat-expansion-panel-header>Ваши заявки</mat-expansion-panel-header>
+          <app-order-list *ngIf="orders.count != 0" [dataSource]="orders" (change)="change($event)"></app-order-list>
+        </mat-expansion-panel>
+        <mat-expansion-panel [hideToggle]="false" [disabled]="!changed" (closed)="onChanged()" [expanded]="changed">
+          <mat-expansion-panel-header>Просмотр</mat-expansion-panel-header>
+          <app-order-view [order]="order"></app-order-view>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
   </mat-tab>
   <mat-tab label="Настройки">
 

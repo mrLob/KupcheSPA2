@@ -30,6 +30,7 @@ import { LoginDialogComponent } from './components/login-dialog/login-dialog.com
 import { QuestionDialogComponent } from './components/question-dialog/question-dialog.component';
 import { ProfileBarComponent } from './components/profile-bar/profile-bar.component';
 import { CompanyViewComponent } from './components/company-view/company-view.component';
+import { CompanyPostsComponent } from './components/company-posts/company-posts.component';
 import { OrdersDialogComponent } from './components/orders-dialog/orders-dialog.component';
 
 @NgModule({
@@ -55,6 +56,7 @@ import { OrdersDialogComponent } from './components/orders-dialog/orders-dialog.
         QuestionDialogComponent,
         ProfileBarComponent,
         CompanyViewComponent,
+        CompanyPostsComponent,
         OrdersDialogComponent
     ],
     imports: [
@@ -71,7 +73,7 @@ import { OrdersDialogComponent } from './components/orders-dialog/orders-dialog.
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
-            { path: 'counter', component: CounterComponent },
+            { path: 'companies', component: CompaniesComponent },
             { path: 'orders', component: OrdersComponent },
             { path: 'login', component: LoginComponent },
             { path: 'register', component: RegisterComponent },

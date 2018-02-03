@@ -1,5 +1,5 @@
   .example-container {
-    height: 97vh;
+    height: 100vh;
     background-color: #fffdef;
     background-image: url("../../back.png");
   }
@@ -30,6 +30,7 @@
     padding: 0;
   }
   mat-toolbar{
+    color: #259f6c;
     position: relative;
     z-index: 2;
     padding-left: 0;    

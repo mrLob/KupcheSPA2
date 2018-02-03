@@ -20,7 +20,7 @@
                     <mat-datepicker #myDatepicker></mat-datepicker>
                 </mat-form-field>
                 <mat-form-field [ngStyle]="{'width':'30%'}">
-                    <input matInput formControlName="cost" type="number" min="0" placeholder="cтоимость"/>
+                    <input matInput [ngStyle]="{'text-align':'right'}" formControlName="cost" type="number" min="0.00" placeholder="cтоимость"/>
                     <span matSuffix [ngStyle]="{'font-size':'0.9rem'}">BYN</span> 
                 </mat-form-field>
             </form>            

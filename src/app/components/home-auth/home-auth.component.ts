@@ -7,11 +7,13 @@ import { Order } from '../../shared/models';
 @Component({
   selector: 'app-home-auth',
   templateUrl: './home-auth.component.html',
-  styleUrls: ['./home-auth.component.css'],
+  styleUrls: ['./home-auth.component.css', '../../shared/global.css'],
   providers: [OrdersService]
 })
 export class HomeAuthComponent implements OnInit {
+  public order: Order = new Order();
   public orders: Order[] = [];
+  changed: boolean = false;
 
   constructor(private service: OrdersService, public localStor: StorageService) {}
 
@@ -25,5 +27,12 @@ export class HomeAuthComponent implements OnInit {
       .subscribe((data: Order[]) => this.orders = data);
 
   }
-
+  onChanged(): void {
+    this.changed = false;
+  }
+  change(id: Order): void {
+    this.order = id;
+    console.log(this.order.idOrders);
+    this.changed = true;
+  }
 }

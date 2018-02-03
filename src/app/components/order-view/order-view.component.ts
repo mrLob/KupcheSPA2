@@ -8,7 +8,7 @@ import {Order} from '../../shared/models';
 export class OrderViewComponent implements OnInit {
 
 @Input('order')
-public order= new Order();
+public order = new Order();
 
   constructor() {}
 

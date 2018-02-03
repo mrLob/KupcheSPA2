@@ -1,10 +1,11 @@
+<mat-divider mat-inset></mat-divider>
 <div fxLayout="row wrap">
     <div fxFlex="60%">
         <div class="title">{{order.caption}}</div>
         <div class="subtitle">Subtitle</div>
     </div>
     <div fxFlex="20%">
-        <div>Актуален до:</div>
+        <div>Актуален до: {{order.upTo |date: 'dd/MM/yyyy'}}</div>
     </div>
     <div fxFlex="20%">
         <div >Категория</div>
@@ -13,16 +14,22 @@
         <div>{{order.description}}</div>            
     </div>
     <div fxFlex="40%" class="content">
-        <div>Карта</div>
+        <app-google-map [lat]="51.673858" [lng]="7.815982"></app-google-map>
     </div>
+    
     <div fxFlex="50%">
+        <mat-divider mat-inset></mat-divider>
         <p>Метки</p>
         <mat-chip-list>
             <mat-chip >Footer</mat-chip>
             <mat-chip >Chip 2</mat-chip>
-        </mat-chip-list>
+        </mat-chip-list>        
     </div>
+    
     <div fxFlex="50%" fxLayoutAlign="end">
+        <mat-divider mat-inset></mat-divider>
+        <mat-divider mat-inset [vertical]="true"></mat-divider>
+        
         <p>{{order.cost}}</p>
         <button mat-button >Далее</button> 
     </div>

@@ -1,17 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-    selector: 'google-map',
+    selector: 'app-google-map',
     templateUrl: './googlemap.component.html',
     styleUrls: ['./googlemap.component.css']
 })
 export class GoogleMapComponent implements OnInit {
-    lat: number ;
-    lng: number ;
+    @Input() lat: number ;
+    @Input() lng: number ;
     constructor() { }
 
     ngOnInit() {
-        this.lng = 7.809007;
-        this.lat = 51.678418;
-     }
+    }
 }
