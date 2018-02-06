@@ -17,5 +17,8 @@ export class OrdersDialogComponent implements OnInit {
   ngOnInit() {
     console.log('Company: ' + this.companyId);
   }
+  onAdd(event) {
+    this.dialogRef.close('true');
+  }
 
 }

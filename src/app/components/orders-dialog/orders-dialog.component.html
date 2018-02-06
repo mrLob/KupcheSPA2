@@ -1,11 +1,10 @@
 <h1 matDialogTitle>Отправить заявку</h1>
 
 <mat-dialog-content>
-    <app-order-form [mode]="mode" [company]="companyId"></app-order-form>
+    <app-order-form [mode]="mode" [company]="companyId" (newOrder)="onAdd($event)"></app-order-form>
 </mat-dialog-content>
 
-<mat-dialog-actions [attr.align]="start">
+<mat-dialog-actions align="start">
     <button mat-button matDialogClose>Close dialog</button>
-    <button mat-button>Action</button>
-    
+    <button mat-button>Action</button>    
 </mat-dialog-actions>

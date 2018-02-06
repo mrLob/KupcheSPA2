@@ -8,7 +8,7 @@ import { OrdersDialogComponent } from '../orders-dialog/orders-dialog.component'
 @Component({
   selector: 'app-companies',
   templateUrl: './companies.component.html',
-  styleUrls: ['./companies.component.css'],
+  styleUrls: ['./companies.component.css', '../../shared/global.css'],
   providers: [CompaniesService]
 })
 

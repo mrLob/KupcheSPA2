@@ -21,7 +21,7 @@ export class OrdersFormComponent implements OnInit {
     companies: Company[];
     selectedCompany: Company = new Company();
     orderForm: FormGroup;
-    date = new Date();
+    datenow = new Date();
     @Input() mode: string;
     @Input() company: number;
     // tslint:disable-next-line:no-output-rename
@@ -30,11 +30,12 @@ export class OrdersFormComponent implements OnInit {
     constructor(private ordersService: OrdersService,
         private companiesService: CompaniesService,
         public dialogRef: MatDialogRef<OrdersFormComponent>, private fb: FormBuilder) {
+            this.datenow.setDate(this.datenow.getDate() + 1);
             this.orderForm = fb.group({
                 'caption': ['', [Validators.required]],
                 'description': ['', [Validators.required]],
                 'cost': [0.00, [Validators.required]],
-                'date': [new Date(this.date.getFullYear(), this.date.getMonth(), this.date.getDate() + 1), [Validators.required]]
+                'date': [new Date(this.datenow.getFullYear(), this.datenow.getMonth(), this.datenow.getDate()), [Validators.required]]
             });
         }
 

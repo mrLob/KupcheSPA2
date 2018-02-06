@@ -32,6 +32,8 @@ import { ProfileBarComponent } from './components/profile-bar/profile-bar.compon
 import { CompanyViewComponent } from './components/company-view/company-view.component';
 import { CompanyPostsComponent } from './components/company-posts/company-posts.component';
 import { OrdersDialogComponent } from './components/orders-dialog/orders-dialog.component';
+import { InvoicesListComponent } from './components/invoices-list/invoices-list.component';
+
 
 @NgModule({
     declarations: [

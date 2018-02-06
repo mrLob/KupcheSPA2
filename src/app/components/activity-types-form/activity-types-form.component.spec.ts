@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OrdersDialogComponent } from './orders-dialog.component';
+import { ActivityTypesFormComponent } from './activity-types-form.component';
 
-describe('OrdersDialogComponent', () => {
-  let component: OrdersDialogComponent;
-  let fixture: ComponentFixture<OrdersDialogComponent>;
+describe('ActivityTypesFormComponent', () => {
+  let component: ActivityTypesFormComponent;
+  let fixture: ComponentFixture<ActivityTypesFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OrdersDialogComponent ]
+      declarations: [ ActivityTypesFormComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(OrdersDialogComponent);
+    fixture = TestBed.createComponent(ActivityTypesFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

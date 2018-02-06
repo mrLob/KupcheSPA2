@@ -5,7 +5,7 @@
         [hideToggle]="false">        
         <mat-expansion-panel [hideToggle]="false" [expanded]="!changed">
           <mat-expansion-panel-header>Ваши заявки</mat-expansion-panel-header>
-          <app-order-list *ngIf="orders.count != 0" [dataSource]="orders" (change)="change($event)"></app-order-list>
+          <app-order-list *ngIf="orders.length != 0" [dataSource]="orders" (change)="change($event)"></app-order-list>
         </mat-expansion-panel>
         <mat-expansion-panel [hideToggle]="false" [disabled]="!changed" (closed)="onChanged()" [expanded]="changed">
           <mat-expansion-panel-header>Просмотр</mat-expansion-panel-header>
