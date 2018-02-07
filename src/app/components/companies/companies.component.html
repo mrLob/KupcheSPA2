@@ -14,7 +14,7 @@
                         </div> 
                 </mat-card-content>
                 <mat-card-actions  align="end">
-                    <button mat-button color="primary" (click)="onAction(event)"><span [ngStyle]="{'font-size': '0.9rem'}">Подробнее</span></button>
+                    <button mat-button color="primary" (click)="onGoTo(company.idCompany)"><span [ngStyle]="{'font-size': '0.9rem'}">Подробнее</span></button>
                     <button mat-button (click)="onOrder(company.idCompany)"><span [ngStyle]="{'font-size': '0.9rem'}"> Отправить заявку</span></button>                        
                 </mat-card-actions>
             </mat-card>

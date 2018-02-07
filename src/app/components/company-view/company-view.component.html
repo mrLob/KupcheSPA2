@@ -1,9 +1,29 @@
-<div>
-Инфа компании
-</div>
-<div>
-Товары
-</div>
-<div>
-Статьи
+<div class="panel">
+    <mat-card [ngStyle]="{'min-height':'200px'}">    
+        <div>
+            <div [ngStyle]="{'height':'10%','width':'10%'}">
+                <img [ngStyle]="{'height':'100%','width':'100%'}" src="https://cdn1.iconfinder.com/data/icons/rcons-user-action/512/users_woman-512.png" alt="">
+            </div>
+            <div fxFlex="70%"[ngStyle]="{'font-size':'1.2rem'}"> 
+                {{company.shortName}}
+                <div [ngStyle]="{'font-size':'0.9rem'}"> 
+                    {{company.name}} 
+                </div> 
+            </div> 
+        </div>   
+        <mat-card-content [ngStyle]="{'font-size':'1rem',justify-content':'space-between'}">
+            <div fxFlex="50%" [innerHtml]="company.about">
+                {{company.about}}
+            </div>
+            <div fxFlex="10%" [ngStyle]="{'font-size':'1.1rem'}" [innerHtml]="company.contacts">
+                {{company.contacts}}
+            </div>
+            <div fxFlex="30%">
+                <app-google-map [lat]="51.673858" [lng]="7.815982"></app-google-map>
+            </div>
+        </mat-card-content>
+        <mat-card-actions [ngStyle]="{'font-size':'1rem'}" align="end">
+            <button mat-button >Action1</button>
+        </mat-card-actions>
+    </mat-card>
 </div>

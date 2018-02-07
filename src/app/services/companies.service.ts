@@ -16,6 +16,9 @@ export class CompaniesService {
     getAll() {
         return this.http.get<Company[]>(this.url);
     }
+    getById(id: number) {
+        return this.http.get(this.url + '/' + id);
+    }
 
     create(newCompany: Company) {
         return this.http.post<Company>(this.url, newCompany);

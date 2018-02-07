@@ -1,5 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material';
+import { Router } from '@angular/router';
 
 import { CompaniesService } from '../../services/companies.service';
 import { Company } from '../../shared/models';
@@ -18,6 +19,7 @@ export class CompaniesComponent implements OnInit {
   public columns= 3;
 
   constructor(private sevice: CompaniesService,
+    private router: Router,
     public dialog: MatDialog) { }
 
   ngOnInit() {
@@ -40,7 +42,9 @@ export class CompaniesComponent implements OnInit {
       this.columns = 1;
     }
   }
-
+  onGoTo(id: any) {
+    this.router.navigate(['/companies', id]);
+  }
   onOrder(id: any) {
     const dialog = this.dialog.open(OrdersDialogComponent, {
       data: {cId: id}

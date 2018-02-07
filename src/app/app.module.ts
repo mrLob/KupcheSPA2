@@ -76,6 +76,7 @@ import { InvoicesListComponent } from './components/invoices-list/invoices-list.
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
             { path: 'companies', component: CompaniesComponent },
+            { path: 'companies/:id', component: CompanyViewComponent },
             { path: 'orders', component: OrdersComponent },
             { path: 'login', component: LoginComponent },
             { path: 'register', component: RegisterComponent },

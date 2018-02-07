@@ -56,7 +56,7 @@ namespace webapi.Controllers
             var token = tokenHandler.CreateToken(tokenDescriptor);
             var tokenString = tokenHandler.WriteToken(token);
             servicedbContext context = new servicedbContext();
-            var rules = context.Rules.Where(r => r.IdRules == authUser.RulesId);
+            var rules = context.Rules.Where(r => r.IdRules == authUser.RulesId).FirstOrDefault();
             var company = context.Companies.Where(c => c.IdCompany == authUser.CompanyId).FirstOrDefault();
             Console.WriteLine("Return auth of "+ authUser.Email);
             return Ok(new {
@@ -68,7 +68,7 @@ namespace webapi.Controllers
                 Telephone = authUser.Telephone,
                 isDeleted = authUser.IsDeleted,
                 isBlocked = authUser.IsBlocked,
-                Rule = rules,
+                Rule = rules.Name,
                 Company = company.IdCompany,
                 Token = tokenString
             });
@@ -115,6 +115,7 @@ namespace webapi.Controllers
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
+            if(id == null || id == 0) return BadRequest();
             var user = _userService.GetById(id);
             var userDto = _mapper.Map<UserDto>(user);
             return Ok(userDto);
